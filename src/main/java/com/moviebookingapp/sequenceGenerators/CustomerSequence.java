@@ -1,4 +1,4 @@
-package com.moviebookingapp.entities;
+package com.moviebookingapp.sequenceGenerators;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -14,7 +14,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 @Document(collection = "db_sequence")
-public class DbSequence {
+public class CustomerSequence {
 
 	@Id
 	private String id;

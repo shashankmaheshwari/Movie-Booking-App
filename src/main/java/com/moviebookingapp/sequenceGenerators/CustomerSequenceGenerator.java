@@ -1,4 +1,4 @@
-package com.moviebookingapp.service.impl;
+package com.moviebookingapp.sequenceGenerators;
 
 import java.util.Objects;
 
@@ -10,10 +10,8 @@ import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.stereotype.Service;
 
-import com.moviebookingapp.entities.DbSequence;
-
 @Service
-public class SequenceGenerator {
+public class CustomerSequenceGenerator {
 	@Autowired
 	private MongoOperations mongoOperations;
 
@@ -25,8 +23,8 @@ public class SequenceGenerator {
 		Update update = new Update().inc("seq", 1);
 
 		// Modify Sequence
-		DbSequence counter = mongoOperations.findAndModify(query, update,
-				FindAndModifyOptions.options().returnNew(true).upsert(true), DbSequence.class);
+		CustomerSequence counter = mongoOperations.findAndModify(query, update,
+				FindAndModifyOptions.options().returnNew(true).upsert(true), CustomerSequence.class);
 		
 		return !Objects.isNull(counter) ? counter.getSeq() : 1;
 
