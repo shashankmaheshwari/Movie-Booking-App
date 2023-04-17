@@ -6,6 +6,9 @@ import org.springframework.data.mongodb.core.index.CompoundIndex;
 import org.springframework.data.mongodb.core.index.CompoundIndexes;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -13,16 +16,27 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Document(collection="movie")
-@CompoundIndexes({@CompoundIndex(name="composite_key",def="{'movieName':1,'theatreName':1")})
+@Document(collection = "movie")
+@CompoundIndexes({ @CompoundIndex(name = "composite_key", def = "{'movieName':1,'theatreName':1") })
 public class Movie {
-	
+
 	@Transient
-	public static final String MOVIE_SEQUENCE="Movie_sequence";
+	public static final String MOVIE_SEQUENCE = "Movie_sequence";
+
 	@Id
 	private int movieId;
-	
+
+	@NotBlank(message = "Movie Name can't be empty")
 	private String movieName;
+
+	@NotBlank(message = "Theatre Name can't be empty")
 	private String theatreName;
+
+	@Min(0)
+	@Max(500)
 	private int totalNoOfTickets;
+
+	@Min(0)
+	@Max(10000)
+	double movieCost;
 }

@@ -11,12 +11,14 @@ import com.moviebookingapp.entities.Customer;
 import com.moviebookingapp.exception.CustomerNotFoundException;
 import com.moviebookingapp.service.CustomerService;
 
+import jakarta.validation.Valid;
+
 @RestController
 public class CustomerController {
      @Autowired
 	private CustomerService customerService;
 	@PostMapping("/register")
-	public ResponseEntity<String> addCustomer(@RequestBody Customer customer) throws CustomerNotFoundException {
+	public ResponseEntity<String> addCustomer(@RequestBody @Valid Customer customer) throws CustomerNotFoundException {
         ResponseEntity<String> response=null;
         if(customer==null) {
         	response=new ResponseEntity<>(HttpStatus.NO_CONTENT);

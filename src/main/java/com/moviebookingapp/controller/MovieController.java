@@ -17,6 +17,8 @@ import com.moviebookingapp.entities.Movie;
 import com.moviebookingapp.exception.MovieNotFoundException;
 import com.moviebookingapp.service.MovieService;
 
+import jakarta.validation.Valid;
+
 @RestController
 @RequestMapping("/moviebooking")
 public class MovieController {
@@ -25,7 +27,7 @@ public class MovieController {
 
 	// ADD MOVIE
 	@PostMapping("/add")
-	public ResponseEntity<Movie> addMovie(@RequestBody Movie movie) throws MovieNotFoundException {
+	public ResponseEntity<Movie> addMovie(@RequestBody @Valid Movie movie) throws MovieNotFoundException {
 		movie = movieService.addMovie(movie);
 		return new ResponseEntity<>(movie, HttpStatus.CREATED);
 	}
@@ -53,10 +55,11 @@ public class MovieController {
 
 	// SEARCH A MOVIE ON THE BASIS OF ID
 	@GetMapping("/viewMovie/{movieId}/{movieName}")
-	public ResponseEntity<Movie> viewMovie(@PathVariable int movieId,@PathVariable String movieName) throws MovieNotFoundException {
+	public ResponseEntity<Movie> viewMovie(@PathVariable int movieId, @PathVariable String movieName)
+			throws MovieNotFoundException {
 		ResponseEntity<Movie> response = null;
 		try {
-			Movie movie = movieService.viewMovie(movieId,movieName);
+			Movie movie = movieService.viewMovie(movieId, movieName);
 			response = new ResponseEntity<>(movie, HttpStatus.OK);
 
 		} catch (Exception e) {
@@ -68,10 +71,11 @@ public class MovieController {
 
 	// DELETE A MOVIE ON THE BASIS ON ID AND NAME
 	@DeleteMapping("/{movieName}/delete/{id}")
-	public ResponseEntity<Movie> removeMovie(@PathVariable int id,@PathVariable String movieName) throws MovieNotFoundException{
+	public ResponseEntity<Movie> removeMovie(@PathVariable int id, @PathVariable String movieName)
+			throws MovieNotFoundException {
 
 		ResponseEntity<Movie> response = null;
-		Movie movie = movieService.viewMovie(id,movieName);
+		Movie movie = movieService.viewMovie(id, movieName);
 		if (movie == null) {
 			response = new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		} else {
