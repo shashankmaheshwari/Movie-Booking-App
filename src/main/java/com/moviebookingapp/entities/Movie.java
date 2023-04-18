@@ -2,10 +2,9 @@ package com.moviebookingapp.entities;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.Transient;
-import org.springframework.data.mongodb.core.index.CompoundIndex;
-import org.springframework.data.mongodb.core.index.CompoundIndexes;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import jakarta.persistence.EmbeddedId;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
@@ -17,7 +16,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Document(collection = "movie")
-@CompoundIndexes({ @CompoundIndex(name = "composite_key", def = "{'movieName':1,'theatreName':1") })
 public class Movie {
 
 	@Transient
@@ -25,12 +23,15 @@ public class Movie {
 
 	@Id
 	private int movieId;
-
-	@NotBlank(message = "Movie Name can't be empty")
-	private String movieName;
-
-	@NotBlank(message = "Theatre Name can't be empty")
-	private String theatreName;
+  
+//	@NotBlank(message = "Movie Name can't be empty")
+//	private String movieName;
+//  
+//	@NotBlank(message = "Theatre Name can't be empty")
+//	private String theatreName;
+	
+	@EmbeddedId
+	private MovieCompositeKey compositeId;
 
 	@Min(0)
 	@Max(500)
@@ -40,3 +41,4 @@ public class Movie {
 	@Max(10000)
 	double movieCost;
 }
+

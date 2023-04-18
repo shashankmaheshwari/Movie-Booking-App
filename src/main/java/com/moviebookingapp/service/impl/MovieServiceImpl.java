@@ -18,11 +18,14 @@ public class MovieServiceImpl implements MovieService {
 	private MovieRepository movieRepository;
 	@Autowired
 	private MovieSequenceGenerator movieSequenceGenerator;
+	
+	
+	
 
 	@Override
 	public Movie addMovie(Movie movie) throws MovieNotFoundException {
 		if (movie != null) {
-			if (movieRepository.existsByMovieNameAndTheatreName(movie.getMovieName(), movie.getTheatreName())) {
+			if (movieRepository.findByCompositeIdMovieNameAndCompositeIdTheatreName(movie.getCompositeId().getMovieName(),movie.getCompositeId().getTheatreName())!=null) {
 				throw new MovieNotFoundException("Movie already exists");
 			} else {
 				movie.setMovieId(movieSequenceGenerator.getSequenceNumber(Movie.MOVIE_SEQUENCE));
@@ -41,8 +44,8 @@ public class MovieServiceImpl implements MovieService {
 
 	@Override
 	public List<Movie> searchMovie(String movieName) throws MovieNotFoundException {
-		List<Movie> movies = movieRepository.findAllByMovieName(movieName);
-		if (movies == null) {
+		List<Movie> movies = movieRepository.findAllByCompositeIdMovieName(movieName);
+		if (movies.size() == 0) {
 			throw new MovieNotFoundException("Movie does not exists");
 		}
 		return movies;
@@ -59,7 +62,11 @@ public class MovieServiceImpl implements MovieService {
 	@Override
 	public Movie viewMovie(int movieId,String movieName) throws MovieNotFoundException {
 		
-		return movieRepository.findByMovieIdAndMovieName(movieId,movieName);
+		Movie movie= movieRepository.findByMovieIdAndCompositeIdMovieName(movieId,movieName);
+		if(movie==null) {
+			throw new MovieNotFoundException("Movie with this id and Name does not exist");
+		}
+		return movie;
 	}
 
 }

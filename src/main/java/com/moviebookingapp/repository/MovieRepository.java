@@ -6,17 +6,21 @@ import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
 
 import com.moviebookingapp.entities.Movie;
+import com.moviebookingapp.entities.MovieCompositeKey;
 
 @Repository
-public interface MovieRepository extends MongoRepository<Movie, String> {
+public interface MovieRepository extends MongoRepository<Movie, MovieCompositeKey> {
 
-	Movie findByMovieNameAndTheatreName(String movieName, String theatreName);
+	Movie findByCompositeIdMovieNameAndCompositeIdTheatreName(String movieName, String theatreName);
 
-	boolean existsByMovieNameAndTheatreName(String movieName, String theatreName);
 
-	List<Movie> findAllByMovieName(String movieName);
+	List<Movie> findAllByCompositeIdMovieName(String movieName);
 	
-	Movie findByMovieIdAndMovieName(int  MovieId,String movieName);
+	Movie findByMovieIdAndCompositeIdMovieName(int movieId,String movieName);
 	
 	Movie findByMovieId(int  MovieId);
+	
+	List<Movie> findAll();
+	
+	
 }

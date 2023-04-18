@@ -26,7 +26,7 @@ public class MovieController {
 	private MovieService movieService;
 
 	// ADD MOVIE
-	@PostMapping("/add")
+	@PostMapping("/addMovie")
 	public ResponseEntity<Movie> addMovie(@RequestBody @Valid Movie movie) throws MovieNotFoundException {
 		movie = movieService.addMovie(movie);
 		return new ResponseEntity<>(movie, HttpStatus.CREATED);
@@ -41,14 +41,12 @@ public class MovieController {
 
 	// SEARCH A MOVIE BASIS ON THE MOVIE NAME
 	@GetMapping("/movies/search/{movieName}")
-	public ResponseEntity<List<Movie>> searchMovie(@PathVariable String movieName) {
+	public ResponseEntity<List<Movie>> searchMovie(@PathVariable String movieName) throws MovieNotFoundException {
 		ResponseEntity<List<Movie>> response = null;
-		try {
-			List<Movie> movies = movieService.searchMovie(movieName);
-			response = new ResponseEntity<>(movies, HttpStatus.OK);
-		} catch (Exception e) {
-			response = new ResponseEntity<>(HttpStatus.NOT_FOUND);
-		}
+
+		List<Movie> movies = movieService.searchMovie(movieName);
+		response = new ResponseEntity<>(movies, HttpStatus.OK);
+
 		return response;
 
 	}
@@ -58,14 +56,10 @@ public class MovieController {
 	public ResponseEntity<Movie> viewMovie(@PathVariable int movieId, @PathVariable String movieName)
 			throws MovieNotFoundException {
 		ResponseEntity<Movie> response = null;
-		try {
-			Movie movie = movieService.viewMovie(movieId, movieName);
-			response = new ResponseEntity<>(movie, HttpStatus.OK);
 
-		} catch (Exception e) {
-			response = new ResponseEntity<>(HttpStatus.NOT_FOUND);
-			throw new MovieNotFoundException("Movie with " + movieId + " id dosen't exist");
-		}
+		Movie movie = movieService.viewMovie(movieId, movieName);
+		response = new ResponseEntity<>(movie, HttpStatus.OK);
+
 		return response;
 	}
 

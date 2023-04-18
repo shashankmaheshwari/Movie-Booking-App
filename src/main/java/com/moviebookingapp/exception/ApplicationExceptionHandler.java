@@ -22,4 +22,25 @@ public class ApplicationExceptionHandler {
 	
 		return errorMap;
 	}
+	
+	@ResponseStatus(HttpStatus.BAD_REQUEST)
+	@ExceptionHandler(MovieNotFoundException.class)
+	public Map<String,String> handleMovieException(MovieNotFoundException ex){
+		Map<String,String> errorMap=new HashMap<>();
+		errorMap.put("errorMessage", ex.getMessage());
+	
+		return errorMap;
+	}
+	
+	@ResponseStatus(HttpStatus.BAD_REQUEST)
+	@ExceptionHandler(CustomerNotFoundException.class)
+	public Map<String,String> handleCustomerException(CustomerNotFoundException ex){
+		Map<String,String> errorMap=new HashMap<>();
+		errorMap.put("errorMessage", ex.getMessage());
+	
+		return errorMap;
+	}
+	
+	
+	
 }
