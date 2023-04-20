@@ -46,7 +46,7 @@ public class MovieServiceImpl implements MovieService {
 	public List<Movie> searchMovie(String movieName) throws MovieNotFoundException {
 		List<Movie> movies = movieRepository.findAllByCompositeIdMovieName(movieName);
 		if (movies.size() == 0) {
-			throw new MovieNotFoundException("Movie does not exists");
+			throw new MovieNotFoundException(" Movie does not exists");
 		}
 		return movies;
 	}
@@ -67,6 +67,17 @@ public class MovieServiceImpl implements MovieService {
 			throw new MovieNotFoundException("Movie with this id and Name does not exist");
 		}
 		return movie;
+	}
+
+	@Override
+	public void  updateTicketStatus(String movieName, String theatreName) throws MovieNotFoundException{
+		Movie movie= movieRepository.findByCompositeIdMovieNameAndCompositeIdTheatreName(movieName,theatreName);
+		if(movie==null) {
+			throw new MovieNotFoundException("Movie with this id and Name does not exist");
+		}
+		movie.setTicketStatus(" SOLD OUT ");
+		return ;
+		
 	}
 
 }

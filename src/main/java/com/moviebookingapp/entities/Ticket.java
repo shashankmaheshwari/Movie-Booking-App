@@ -6,15 +6,16 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.Transient;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-//@Data
-//@NoArgsConstructor
-//@AllArgsConstructor
-//@Document(collection="ticket")
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Document(collection="ticket")
 public class Ticket {
   
 	  @Transient
@@ -22,17 +23,22 @@ public class Ticket {
 	  @Id
 	  private int ticketId;
 	  
-	  @NotNull(message="enter valid movieId")
-	  private int movieId;
+	  @NotBlank(message="Movie name can't be empty")
+	  private String  movieName;
 	  
-	  @NotNull(message="enter valid customerId")
-	  private int customerId;
+	  @NotBlank(message="Theatre Name can't be empty")
+	  private String theatreName;
+	  
+//	  @NotNull(message="enter valid customerId")
+//	  private int customerId;
 	  
 	  @NotNull(message="Enter number Of Tickets")
 	  private int numberOfTicket;
 	  
-	  @NotNull(message="Enter Seat Numbers to book")
-	  private List<Integer> SeatNumber;
+	  @NotNull(message="Enter Seats to book")
+	  private List<Seat> Seats;
+	  
+	  private double totaCost;
 	 
 	  
 }

@@ -23,12 +23,7 @@ public class Movie {
 
 	@Id
 	private int movieId;
-  
-//	@NotBlank(message = "Movie Name can't be empty")
-//	private String movieName;
-//  
-//	@NotBlank(message = "Theatre Name can't be empty")
-//	private String theatreName;
+ 
 	
 	@EmbeddedId
 	private MovieCompositeKey compositeId;
@@ -36,9 +31,13 @@ public class Movie {
 	@Min(0)
 	@Max(500)
 	private int totalNoOfTickets;
+	
+	private int noOfTicketsSold;
 
 	@Min(0)
 	@Max(10000)
-	double movieCost;
+	private double movieCost;
+	
+	private String ticketStatus="BOOK ASAP";
 }
 

@@ -9,12 +9,14 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.moviebookingapp.entities.Movie;
 import com.moviebookingapp.exception.MovieNotFoundException;
+import com.moviebookingapp.repository.MovieRepository;
 import com.moviebookingapp.service.MovieService;
 
 import jakarta.validation.Valid;
@@ -77,6 +79,16 @@ public class MovieController {
 			response = new ResponseEntity<>(movie, HttpStatus.OK);
 		}
 		return response;
+	}
+	
+	//UPDATE TICKET STATUS
+	@PutMapping("/{movieName}/{theatreName}/update/ticket")
+	public ResponseEntity<?> updateTicketStatus(String movieName,String theatreName) throws MovieNotFoundException {
+		ResponseEntity<?>response=null;
+		movieService.updateTicketStatus(movieName, theatreName);
+		response = new ResponseEntity<>( HttpStatus.OK);
+		return response;
+		
 	}
 
 }

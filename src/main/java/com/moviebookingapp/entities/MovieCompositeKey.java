@@ -16,9 +16,7 @@ import lombok.NoArgsConstructor;
 @Embeddable
 public class MovieCompositeKey implements Serializable {
 
-	 /**
-	 * 
-	 */
+	 
 	private static final long serialVersionUID = 1L;
 
 	@NotBlank(message = "Movie Name can't be empty")

@@ -22,5 +22,8 @@ public interface MovieService {
 	//Delete a Movie Basis on the Movie ID
 	public Movie removeMovie(int movieId) throws MovieNotFoundException;
 	
+	//check ticket Status
+	public void  updateTicketStatus(String movieName,String theatreName) throws MovieNotFoundException;
+	
 
 }
