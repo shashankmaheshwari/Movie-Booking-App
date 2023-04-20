@@ -1,5 +1,7 @@
 package com.moviebookingapp.controller;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,6 +21,8 @@ import com.moviebookingapp.service.impl.TicketServiceImpl;
 @RequestMapping("/moviebooking")
 public class TicketController {
 	
+	Logger logger =LoggerFactory.getLogger(TicketController.class);
+	
 	@Autowired
 	private TicketServiceImpl ticketService;
   
@@ -29,6 +33,7 @@ public class TicketController {
 		
 		Ticket ticket1=ticketService.generateTicket(ticket);
 		response =new ResponseEntity<Ticket>(ticket1, HttpStatus.CREATED);
+		logger.info("-------Ticked Created Successfully---------");
 		return response;
 	}
 }

@@ -50,6 +50,10 @@ public class TicketServiceImpl implements TicketService {
 			// BOOK TICKET
 			if(availableTickets>ticket.getNumberOfTicket()) {
 				List<Seat> listOfSeat=ticket.getSeats();
+				
+				if(listOfSeat.size()!=ticket.getNumberOfTicket()) {
+					throw new TicketNotFoundException("Add appropraite Seats");
+				}
 				List<Seat> seats=new ArrayList<>();
 				
 				for(Seat s:listOfSeat) {

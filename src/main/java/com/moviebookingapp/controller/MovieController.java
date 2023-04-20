@@ -2,6 +2,8 @@ package com.moviebookingapp.controller;
 
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -24,6 +26,9 @@ import jakarta.validation.Valid;
 @RestController
 @RequestMapping("/moviebooking")
 public class MovieController {
+	
+	
+	Logger logger=LoggerFactory.getLogger(MovieController.class);
 	@Autowired
 	private MovieService movieService;
 
@@ -31,12 +36,14 @@ public class MovieController {
 	@PostMapping("/addMovie")
 	public ResponseEntity<Movie> addMovie(@RequestBody @Valid Movie movie) throws MovieNotFoundException {
 		movie = movieService.addMovie(movie);
+		logger.info("-------Movie Added Successfully---------");
 		return new ResponseEntity<>(movie, HttpStatus.CREATED);
 	}
 
 	// GET ALL MOVIES
 	@GetMapping("/all")
 	public ResponseEntity<List<Movie>> viewMovieList() throws MovieNotFoundException {
+		logger.info("-------Movie List Fetched---------");
 		return ResponseEntity.ok(movieService.viewMovieList());
 
 	}
@@ -48,7 +55,7 @@ public class MovieController {
 
 		List<Movie> movies = movieService.searchMovie(movieName);
 		response = new ResponseEntity<>(movies, HttpStatus.OK);
-
+		logger.info("-------Movie With Movie Name " + movieName + " Found---------");
 		return response;
 
 	}
@@ -61,7 +68,7 @@ public class MovieController {
 
 		Movie movie = movieService.viewMovie(movieId, movieName);
 		response = new ResponseEntity<>(movie, HttpStatus.OK);
-
+		logger.info("-------Movie With Movie id "+movieId+" and Movie Name " + movieName + " Found---------");
 		return response;
 	}
 
@@ -78,6 +85,7 @@ public class MovieController {
 			movieService.removeMovie(id);
 			response = new ResponseEntity<>(movie, HttpStatus.OK);
 		}
+		logger.info("-------Movie With Movie id " + id + " Deleted---------");
 		return response;
 	}
 	
@@ -87,8 +95,10 @@ public class MovieController {
 		ResponseEntity<?>response=null;
 		movieService.updateTicketStatus(movieName, theatreName);
 		response = new ResponseEntity<>( HttpStatus.OK);
+		logger.info("-------Movie Ticket Status Updated  -----------------");
 		return response;
 		
 	}
+	
 
 }
