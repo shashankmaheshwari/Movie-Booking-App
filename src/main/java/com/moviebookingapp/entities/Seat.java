@@ -6,16 +6,33 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
-@Data
+@Getter
 @NoArgsConstructor
 @AllArgsConstructor
 @Document(collection="seat")
 public class Seat {
+	public void setSeatId(int seatId) {
+		this.seatId = seatId;
+	}
+
+	public void setSeatNumber(int seatNumber) {
+		this.seatNumber = seatNumber;
+	}
+
+	public void setSeatStatus(SeatStatus seatStatus) {
+		this.seatStatus = seatStatus;
+	}
+
+	public void setMovie(Movie movie) {
+		this.movie = movie;
+	}
+
 	@Transient
-	public static final String SEQUENCE_NAME="seat_sequence";
+	public static final String SEAT_SEQUENCE="seat_sequence";
 	@Id
-	private int SeatId;
+	private int seatId;
 	
 	private int seatNumber;
 	

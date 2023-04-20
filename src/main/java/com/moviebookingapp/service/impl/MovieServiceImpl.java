@@ -6,10 +6,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.moviebookingapp.entities.Movie;
+import com.moviebookingapp.entities.Seat;
+import com.moviebookingapp.entities.SeatStatus;
 import com.moviebookingapp.exception.MovieNotFoundException;
 import com.moviebookingapp.repository.MovieRepository;
-import com.moviebookingapp.sequenceGenerators.MovieSequenceGenerator;
+import com.moviebookingapp.sequenceGenerators.DBSequenceGenerator;
 import com.moviebookingapp.service.MovieService;
+import com.moviebookingapp.service.SeatService;
+
+import jakarta.persistence.SequenceGenerator;
 
 @Service
 public class MovieServiceImpl implements MovieService {
@@ -17,9 +22,10 @@ public class MovieServiceImpl implements MovieService {
 	@Autowired
 	private MovieRepository movieRepository;
 	@Autowired
-	private MovieSequenceGenerator movieSequenceGenerator;
+	private DBSequenceGenerator sequenceGenerator;
 	
-	
+	 @Autowired
+	 private SeatService seatService;
 	
 
 	@Override
@@ -28,7 +34,22 @@ public class MovieServiceImpl implements MovieService {
 			if (movieRepository.findByCompositeIdMovieNameAndCompositeIdTheatreName(movie.getCompositeId().getMovieName(),movie.getCompositeId().getTheatreName())!=null) {
 				throw new MovieNotFoundException("Movie already exists");
 			} else {
-				movie.setMovieId(movieSequenceGenerator.getSequenceNumber(Movie.MOVIE_SEQUENCE));
+				movie.setMovieId(sequenceGenerator.getSequenceNumber(Movie.MOVIE_SEQUENCE));
+				int seats=movie.getTotalNoOfTickets();
+				for(int i=1;i<=seats;i++) {
+					Seat seat=new Seat();
+					//SEQUENCE
+					seat.setSeatId(sequenceGenerator.getSequenceNumber(Seat.SEAT_SEQUENCE));
+					seat.setSeatNumber(i);
+					seat.setSeatStatus(SeatStatus.Available);
+					seat.setSeatType();
+					seat.setCost();
+					seat.setMovie(movie);
+					//ADD MOVIE IN THE SEAT
+					seatService.addSeat(seat);
+				}
+				
+				
 				movieRepository.save(movie);
 			}
 		}

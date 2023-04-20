@@ -6,5 +6,5 @@ import com.moviebookingapp.exception.TicketNotFoundException;
 
 public interface TicketService {
 
-	 //public Ticket generateTicket(Ticket ticket) throws MovieNotFoundException,TicketNotFoundException;
+	 public Ticket generateTicket(Ticket ticket) throws MovieNotFoundException,TicketNotFoundException;
 }

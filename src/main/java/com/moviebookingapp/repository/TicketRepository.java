@@ -8,5 +8,4 @@ import com.moviebookingapp.entities.Ticket;
 
 @Repository
 public interface TicketRepository extends MongoRepository<Ticket, Integer>{
-    Movie findByMovieId(int movieId);
 }

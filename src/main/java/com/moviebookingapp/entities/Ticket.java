@@ -36,7 +36,7 @@ public class Ticket {
 	  private int numberOfTicket;
 	  
 	  @NotNull(message="Enter Seats to book")
-	  private List<Seat> Seats;
+	  private List<Seat> seats;
 	  
 	  private double totaCost;
 	 
