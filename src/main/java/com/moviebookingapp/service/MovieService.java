@@ -16,6 +16,10 @@ public interface MovieService {
 	// search a Movie Basis on the Name
 	public List<Movie> searchMovie(String movieName) throws MovieNotFoundException;
 	
+	//search a movie Basis on the theatre Name
+	public List<Movie> searchMovieOnBasisTheatreName(String theatreName) throws MovieNotFoundException;
+
+	
 	//Search a Movie Basis on the Id AND Name
 	public Movie viewMovie(int movieId,String movieName) throws MovieNotFoundException;
 	

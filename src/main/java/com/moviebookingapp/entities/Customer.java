@@ -25,6 +25,9 @@ public class Customer {
 	public static final String SEQUENCE_NAME = "customer_sequence";
 	@Id
 	private int loginId;
+	
+	@NotBlank(message="User Name cant be empty")
+	private String userName;
 
 	@NotBlank(message = " Customer First Name can't be empty ")
 	private String firstName;

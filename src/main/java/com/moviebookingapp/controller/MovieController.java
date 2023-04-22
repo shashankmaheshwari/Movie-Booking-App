@@ -7,6 +7,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -34,6 +35,7 @@ public class MovieController {
 
 	// ADD MOVIE
 	@PostMapping("/addMovie")
+	@PreAuthorize("hasAuthority('ADMIN')")
 	public ResponseEntity<Movie> addMovie(@RequestBody @Valid Movie movie) throws MovieNotFoundException {
 		movie = movieService.addMovie(movie);
 		logger.info("-------Movie Added Successfully---------");
@@ -74,6 +76,7 @@ public class MovieController {
 
 	// DELETE A MOVIE ON THE BASIS ON ID AND NAME
 	@DeleteMapping("/{movieName}/delete/{id}")
+	@PreAuthorize("hasAuthority('ADMIN')")
 	public ResponseEntity<Movie> removeMovie(@PathVariable int id, @PathVariable String movieName)
 			throws MovieNotFoundException {
 
@@ -98,6 +101,18 @@ public class MovieController {
 		logger.info("-------Movie Ticket Status Updated  -----------------");
 		return response;
 		
+	}
+	//FIND ALL MOVIES BASED ON THEATRE
+	@GetMapping("/movies/search/theatre/{theatreName}")
+	public ResponseEntity<?> searchMovieOnBasisTheatre(@PathVariable String theatreName) throws MovieNotFoundException{
+		
+		ResponseEntity<List<Movie>> response = null;
+
+		List<Movie> movies = movieService.searchMovieOnBasisTheatreName(theatreName);
+		response = new ResponseEntity<>(movies, HttpStatus.OK);
+		logger.info("-------Movies  in theatre  " + theatreName + " Found---------");
+		return response;
+	
 	}
 	
 

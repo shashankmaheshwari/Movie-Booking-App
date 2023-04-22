@@ -7,7 +7,6 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import jakarta.persistence.EmbeddedId;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
-import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -28,8 +27,8 @@ public class Movie {
 	@EmbeddedId
 	private MovieCompositeKey compositeId;
 
-	@Min(0)
-	@Max(500)
+	@Min(50)
+	@Max(200)
 	private int totalNoOfTickets;
 	
 	private int noOfTicketsSold;

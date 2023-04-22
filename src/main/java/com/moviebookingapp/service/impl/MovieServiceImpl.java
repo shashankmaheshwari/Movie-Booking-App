@@ -14,7 +14,6 @@ import com.moviebookingapp.sequenceGenerators.DBSequenceGenerator;
 import com.moviebookingapp.service.MovieService;
 import com.moviebookingapp.service.SeatService;
 
-import jakarta.persistence.SequenceGenerator;
 
 @Service
 public class MovieServiceImpl implements MovieService {
@@ -68,6 +67,13 @@ public class MovieServiceImpl implements MovieService {
 		List<Movie> movies = movieRepository.findAllByCompositeIdMovieName(movieName);
 		if (movies.size() == 0) {
 			throw new MovieNotFoundException(" Movie does not exists");
+		}
+		return movies;
+	}
+	public List<Movie> searchMovieOnBasisTheatreName(String theatreName) throws MovieNotFoundException {
+		List<Movie> movies = movieRepository.findAllByCompositeIdTheatreName(theatreName);
+		if (movies.size() == 0) {
+			throw new MovieNotFoundException(" Movie does not exists in "+theatreName);
 		}
 		return movies;
 	}

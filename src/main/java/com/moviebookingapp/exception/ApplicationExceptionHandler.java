@@ -33,8 +33,8 @@ public class ApplicationExceptionHandler {
 	}
 	
 	@ResponseStatus(HttpStatus.BAD_REQUEST)
-	@ExceptionHandler(CustomerNotFoundException.class)
-	public Map<String,String> handleCustomerException(CustomerNotFoundException ex){
+	@ExceptionHandler(CustomerFoundException.class)
+	public Map<String,String> handleCustomerException(CustomerFoundException ex){
 		Map<String,String> errorMap=new HashMap<>();
 		errorMap.put("errorMessage", ex.getMessage());
 	

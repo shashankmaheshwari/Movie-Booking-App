@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.moviebookingapp.entities.Customer;
-import com.moviebookingapp.exception.CustomerNotFoundException;
+import com.moviebookingapp.exception.CustomerFoundException;
 import com.moviebookingapp.service.CustomerService;
 
 import jakarta.validation.Valid;
@@ -22,7 +22,7 @@ public class CustomerController {
      @Autowired
 	private CustomerService customerService;
 	@PostMapping("/register")
-	public ResponseEntity<String> addCustomer(@RequestBody @Valid Customer customer) throws CustomerNotFoundException {
+	public ResponseEntity<String> addCustomer(@RequestBody @Valid Customer customer) throws CustomerFoundException {
         ResponseEntity<String> response=null;
         if(customer==null) {
         	logger.error("-------------Please Enter Customer Values--------");

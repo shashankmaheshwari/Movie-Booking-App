@@ -1,9 +1,9 @@
 package com.moviebookingapp.service;
 
 import com.moviebookingapp.entities.Customer;
-import com.moviebookingapp.exception.CustomerNotFoundException;
+import com.moviebookingapp.exception.CustomerFoundException;
 
 public interface CustomerService {
 
-	public Customer addCustomer(Customer customer)throws CustomerNotFoundException;
+	public Customer addCustomer(Customer customer)throws CustomerFoundException;
 }
