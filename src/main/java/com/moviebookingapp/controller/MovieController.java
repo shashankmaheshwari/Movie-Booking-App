@@ -94,7 +94,8 @@ public class MovieController {
 	
 	//UPDATE TICKET STATUS
 	@PutMapping("/{movieName}/{theatreName}/update/ticket")
-	public ResponseEntity<?> updateTicketStatus(String movieName,String theatreName) throws MovieNotFoundException {
+	@PreAuthorize("hasAuthority('ADMIN')")
+	public ResponseEntity<?> updateTicketStatus(@PathVariable String movieName,@PathVariable String theatreName) throws MovieNotFoundException {
 		ResponseEntity<?>response=null;
 		movieService.updateTicketStatus(movieName, theatreName);
 		response = new ResponseEntity<>( HttpStatus.OK);
@@ -104,6 +105,7 @@ public class MovieController {
 	}
 	//FIND ALL MOVIES BASED ON THEATRE
 	@GetMapping("/movies/search/theatre/{theatreName}")
+	
 	public ResponseEntity<?> searchMovieOnBasisTheatre(@PathVariable String theatreName) throws MovieNotFoundException{
 		
 		ResponseEntity<List<Movie>> response = null;

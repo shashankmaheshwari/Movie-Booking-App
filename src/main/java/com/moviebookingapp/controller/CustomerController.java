@@ -21,6 +21,7 @@ public class CustomerController {
 	Logger logger=LoggerFactory.getLogger(CustomerController.class);
      @Autowired
 	private CustomerService customerService;
+     
 	@PostMapping("/register")
 	public ResponseEntity<String> addCustomer(@RequestBody @Valid Customer customer) throws CustomerFoundException {
         ResponseEntity<String> response=null;

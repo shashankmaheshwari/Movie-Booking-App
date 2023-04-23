@@ -49,7 +49,7 @@ public class TicketServiceImpl implements TicketService {
 				List<Seat> seats=new ArrayList<>();
 				
 				for(Seat s:listOfSeat) {
-					Seat seat=seatRepository.findBySeatNumberAndMovieId(s.getSeatNumber(), s.getMovie().getMovieId());
+					Seat seat=seatRepository.findBySeatNumberAndMovieId(s.getSeatNumber(), movie.getMovieId());
 				    seats.add(seat);
 				}
 				double cost=0;
