@@ -26,6 +26,6 @@ public class DBSequenceGenerator {
 		DBSequence counter = mongoOperations.findAndModify(query, update,
 				FindAndModifyOptions.options().returnNew(true).upsert(true), DBSequence.class);
 
-		return !Objects.isNull(counter) ? counter.getSeq() : 1;
+		return !Objects.isNull(counter) ? counter.getSeq() : 1; 
 	}
 }

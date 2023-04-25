@@ -25,6 +25,7 @@ import lombok.ToString;
 public class Customer {
 	@Transient
 	public static final String SEQUENCE_NAME = "customer_sequence";
+	
 	@Id
 	private int loginId;
 	

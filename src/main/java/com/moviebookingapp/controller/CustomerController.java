@@ -19,6 +19,7 @@ import jakarta.validation.Valid;
 public class CustomerController {
 	
 	Logger logger=LoggerFactory.getLogger(CustomerController.class);
+	
      @Autowired
 	private CustomerService customerService;
      

@@ -13,15 +13,18 @@ import com.moviebookingapp.service.CustomerService;
 @Service
 public class CustomerServiceImpl implements CustomerService {
 
+	@Autowired
 	private CustomerRepository customerRepository;
 	// constructor based inject
+	
+	
 
-	public CustomerServiceImpl(CustomerRepository customerRepository) {
-		this.customerRepository = customerRepository;
-	}
+//	public CustomerServiceImpl(CustomerRepository customerRepository) {
+//		this.customerRepository = customerRepository;
+//	}
 
 	@Autowired
-	private DBSequenceGenerator sequenceGenerator;
+	private DBSequenceGenerator sequenceGenerator1;
 	
 	
 	@Autowired
@@ -35,7 +38,7 @@ public class CustomerServiceImpl implements CustomerService {
 			throw new CustomerFoundException(
 					"Customer with this LoginId " + customer.getLoginId() + " is already Exists");
 		}
-		
+		 
 		// For unique Email
 		else if (customerRepository.existsByEmail(customer.getEmail())) {
 			throw new CustomerFoundException(
@@ -50,7 +53,7 @@ public class CustomerServiceImpl implements CustomerService {
 			throw new CustomerFoundException("Customer Passwords are not same");
 		} 
 		else {
-			customer.setLoginId(sequenceGenerator.getSequenceNumber(Customer.SEQUENCE_NAME));
+			customer.setLoginId(sequenceGenerator1.getSequenceNumber(Customer.SEQUENCE_NAME));
 			// Encoding the password
 			customer.setPassword(passwordEncoder.encode(customer.getPassword()));
 			customer.setConfirmPassword(passwordEncoder.encode(customer.getConfirmPassword()));

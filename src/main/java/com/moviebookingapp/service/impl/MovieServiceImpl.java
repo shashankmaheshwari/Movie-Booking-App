@@ -96,7 +96,7 @@ public class MovieServiceImpl implements MovieService {
 		if (movie == null) {
 			throw new MovieNotFoundException("Movie with this id and Name does not exist");
 		}
-		return movie;
+		return movie; 
 	}
 
 	@Override
