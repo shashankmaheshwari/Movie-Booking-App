@@ -17,7 +17,7 @@ import lombok.NoArgsConstructor;
 @Embeddable
 @Builder
 public class MovieCompositeKey implements Serializable {
-
+ 
 	 
 	private static final long serialVersionUID = 1L;
 

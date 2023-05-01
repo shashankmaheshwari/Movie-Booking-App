@@ -1,7 +1,8 @@
-package com.moviebookingapp.service.impl;
+ package com.moviebookingapp.service.impl;
 
 import java.util.List;
 
+import com.moviebookingapp.repository.SeatRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
@@ -9,6 +10,7 @@ import org.springframework.stereotype.Service;
 import com.moviebookingapp.entities.Movie;
 import com.moviebookingapp.entities.Seat;
 import com.moviebookingapp.entities.SeatStatus;
+import com.moviebookingapp.exception.MovieFoundException;
 import com.moviebookingapp.exception.MovieNotFoundException;
 import com.moviebookingapp.repository.MovieRepository;
 import com.moviebookingapp.sequenceGenerators.DBSequenceGenerator;
@@ -20,6 +22,9 @@ public class MovieServiceImpl implements MovieService {
 
 	@Autowired
 	private MovieRepository movieRepository;
+
+	@Autowired
+	private SeatRepository seatRepository;
 	@Autowired
 	private DBSequenceGenerator sequenceGenerator;
 
@@ -30,11 +35,11 @@ public class MovieServiceImpl implements MovieService {
 	private KafkaTemplate<String, Movie> kafkaTemplate;
 
 	@Override
-	public Movie addMovie(Movie movie) throws MovieNotFoundException {
+	public Movie addMovie(Movie movie) throws MovieNotFoundException, MovieFoundException {
 		if (movie != null) {
 			if (movieRepository.findByCompositeIdMovieNameAndCompositeIdTheatreName(
 					movie.getCompositeId().getMovieName(), movie.getCompositeId().getTheatreName()) != null) {
-				throw new MovieNotFoundException("Movie already exists");
+				throw new MovieFoundException("Movie already exists");
 			} else {
 				movie.setMovieId(sequenceGenerator.getSequenceNumber(Movie.MOVIE_SEQUENCE));
 				int seats = movie.getTotalNoOfTickets();
@@ -46,7 +51,7 @@ public class MovieServiceImpl implements MovieService {
 					seat.setSeatStatus(SeatStatus.Available);
 					seat.setSeatType();
 					seat.setCost();
-					seat.setMovie(movie);
+					seat.setMovie(movie); 
 					// ADD MOVIE IN THE SEAT
 					seatService.addSeat(seat);
 				}
@@ -54,7 +59,7 @@ public class MovieServiceImpl implements MovieService {
 				movieRepository.save(movie);
 			}
 		}
-		return movie;
+		return movie; 
 
 	}
 
@@ -65,26 +70,25 @@ public class MovieServiceImpl implements MovieService {
 	}
 
 	@Override
-	public List<Movie> searchMovie(String movieName) throws MovieNotFoundException {
+	public List<Movie> searchMovie(String movieName)  {
 		List<Movie> movies = movieRepository.findAllByCompositeIdMovieName(movieName);
-		if (movies.size() == 0) {
-			throw new MovieNotFoundException(" Movie does not exists");
-		}
+		
 		return movies;
 	}
 
-	public List<Movie> searchMovieOnBasisTheatreName(String theatreName) throws MovieNotFoundException {
+	public List<Movie> searchMovieOnBasisTheatreName(String theatreName)  {
 		List<Movie> movies = movieRepository.findAllByCompositeIdTheatreName(theatreName);
-		if (movies.size() == 0) {
-			throw new MovieNotFoundException(" Movie does not exists in " + theatreName);
-		}
+
 		return movies;
 	}
 
 	@Override
 	public Movie removeMovie(int movieId) throws MovieNotFoundException {
 		Movie movie = movieRepository.findByMovieId(movieId);
+		List<Seat> seats = seatRepository.findByMovieMovieId(movieId);
+		seatRepository.deleteAll(seats);
 		movieRepository.delete(movie);
+
 
 		return movie;
 	}
@@ -93,9 +97,7 @@ public class MovieServiceImpl implements MovieService {
 	public Movie viewMovie(int movieId, String movieName) throws MovieNotFoundException {
 
 		Movie movie = movieRepository.findByMovieIdAndCompositeIdMovieName(movieId, movieName);
-		if (movie == null) {
-			throw new MovieNotFoundException("Movie with this id and Name does not exist");
-		}
+		
 		return movie; 
 	}
 
@@ -106,12 +108,12 @@ public class MovieServiceImpl implements MovieService {
 			throw new MovieNotFoundException("Movie with this id and Name does not exist");
 		}
 		if (movie.getNoOfTicketsSold() >= movie.getTotalNoOfTickets()) {
-			movie.setTicketStatus(" SOLD OUT ");
+			movie.setTicketStatus("SOLD OUT");
 			movieRepository.save(movie);
-			kafkaTemplate.send("ticket-status", movie);
+			kafkaTemplate.send("ticket-status", movie);  
 		}
 
-		return;
+		return; 
 
 	}
 

@@ -35,7 +35,7 @@ public class SecurityConfig {
 	public static final String [] PUBLIC_URLS= {
 			"/moviebooking/all",
 			"/register",
-			"/authenticate",
+			"/login",
 			"/swagger-resources/**",
 	        "/swagger-ui/**",
 	        "/v3/api-docs/**",
@@ -48,7 +48,7 @@ public class SecurityConfig {
 				.requestMatchers(PUBLIC_URLS)
 				.permitAll().and()
 				// add ticket seat also
-				.authorizeHttpRequests().requestMatchers("/moviebooking/**").authenticated().and()
+				.authorizeHttpRequests().requestMatchers("/moviebooking/**","/**").authenticated().and()
 				.sessionManagement()
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()

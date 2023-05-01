@@ -21,11 +21,12 @@ public class KafkaListner {
 		int id=movie.getMovieId();
 		List<Seat> seats=seatRepository.findByMovieMovieId(id);
 		for(Seat s:seats) {
+			//s.setMovie(s.getMovie());
 			s.setMovie(movie);
 			
 		}
 		seatRepository.saveAll(seats);
-		
+		 
 		
 	}
 }

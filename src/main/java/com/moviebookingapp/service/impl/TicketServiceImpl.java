@@ -10,6 +10,7 @@ import com.moviebookingapp.entities.Movie;
 import com.moviebookingapp.entities.Seat;
 import com.moviebookingapp.entities.SeatStatus;
 import com.moviebookingapp.entities.Ticket;
+import com.moviebookingapp.exception.CommonException;
 import com.moviebookingapp.exception.MovieNotFoundException;
 import com.moviebookingapp.exception.TicketNotFoundException;
 import com.moviebookingapp.repository.MovieRepository;
@@ -33,7 +34,7 @@ public class TicketServiceImpl implements TicketService {
 	private DBSequenceGenerator sequenceGenerator;
     
 	@Override
-	public Ticket generateTicket(Ticket ticket) throws  MovieNotFoundException,TicketNotFoundException {
+	public Ticket generateTicket(Ticket ticket) throws  MovieNotFoundException,TicketNotFoundException, CommonException {
 		
 		Movie movie=movieRepository.findByCompositeIdMovieNameAndCompositeIdTheatreName(ticket.getMovieName(), ticket.getTheatreName());
 		//MOVIE IS PRESENT
@@ -45,7 +46,7 @@ public class TicketServiceImpl implements TicketService {
 				
 				if(listOfSeat.size()!=ticket.getNumberOfTicket()) {
 					throw new TicketNotFoundException("Add appropraite Seats");
-				}
+				} 
 				List<Seat> seats=new ArrayList<>();
 				
 				for(Seat s:listOfSeat) {
@@ -56,12 +57,12 @@ public class TicketServiceImpl implements TicketService {
 				for(Seat s:seats) {
 					// ADDED SEAT IS ALREDY BOOKED
 					if(s.getSeatStatus().equals(SeatStatus.Booked)) {
-						throw new TicketNotFoundException(s.getSeatNumber()+" is already booked Select new Seat");
+						throw new CommonException(s.getSeatNumber()+" is already booked Select new Seat");
 					}else {
 						s.setSeatStatus(SeatStatus.Booked);
 						cost+=s.getCost();
 						//CHANGING SEAT STATUS 
-						seatRepository.save(s);
+						seatRepository.save(s); 
 					}
 				}
 				// ADDING THE COST OF TICKET
@@ -76,7 +77,7 @@ public class TicketServiceImpl implements TicketService {
 			}
 			// CAN'T BOOK
 			else {
-				movieService.updateTicketStatus(movie.getCompositeId().getMovieName(), movie.getCompositeId().getTheatreName());
+				//movieService.updateTicketStatus(movie.getCompositeId().getMovieName(), movie.getCompositeId().getTheatreName());
 			    throw new TicketNotFoundException("Tickets Not Available");
 			}
 			
@@ -91,5 +92,16 @@ public class TicketServiceImpl implements TicketService {
 	
 	   
 	 }
+
+	@Override
+	public List<Ticket> viewTickets() throws TicketNotFoundException {
+		List<Ticket> tickets=ticketRepository.findAll();
+		if(tickets.size()==0) {
+			throw new TicketNotFoundException("Tickets Not Available");
+		}else {
+			return tickets;
+		}
+		
+	}
 
 }

@@ -24,15 +24,15 @@ public class AuthController {
 	private AuthenticationManager authenticationManager;
 	
 
-	@PostMapping("/authenticate")
+	@PostMapping("/login")
 	public String authenticateAndGetToken(@RequestBody AuthRequest authRequest) {
 		Authentication authentication = authenticationManager.authenticate(
 				new UsernamePasswordAuthenticationToken(authRequest.getUserName(), authRequest.getPassword()));
 		if (authentication.isAuthenticated()) {
 			return jwtService.generateToken(authRequest.getUserName());
 		} else {
-			throw new UsernameNotFoundException("invalid user request !");
-		}
+			throw new UsernameNotFoundException("invalid user request !"); 
+		} 
 
 	}
 }

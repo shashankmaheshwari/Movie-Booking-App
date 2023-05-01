@@ -20,7 +20,7 @@ import lombok.ToString;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
-@Builder
+@Builder 
 @Document(collection = "customer")
 public class Customer {
 	@Transient

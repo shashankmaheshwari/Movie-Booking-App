@@ -45,19 +45,19 @@ public class CustomerServiceTest {
 				"1111111111", "user");
 
 	}
-
+	@DisplayName("Junit test for addCustomer Method")
 	@Test
-	public void registerCustomer_Success() throws Exception {
+	public void givenCustomer_whenSaveCustomer_thenReturnCustomer() throws Exception {
 		when(customerRepository.existsByEmail(customer.getEmail())).thenReturn(false);
 		when(customerRepository.existsByLoginId(customer.getLoginId())).thenReturn(false);
 
 		when(customerRepository.save(customer)).thenReturn(customer);
 		Customer customer1 = customerService.addCustomer(customer);
-		assertThat(customer1).isNotNull();
+		assertThat(customer1).isNotNull(); 
 	}
 
 	// JUnit test for savedCustomer method
-	@DisplayName("Junit test for savedCustomer method throws Exception")
+	@DisplayName("Junit test for addCustomer method throws Exception")
 	@Test
 	public void givenExistingEmail_whenSaveCustomer_thenThrowException() {
 		// given
@@ -66,8 +66,8 @@ public class CustomerServiceTest {
 		org.junit.jupiter.api.Assertions.assertThrows(CustomerFoundException.class, () -> {
 			customerService.addCustomer(customer);
 		});
-		// then
-		verify(customerRepository, never()).save(any(Customer.class));
+		// then 
+		verify(customerRepository, never()).save(any(Customer.class));  
 
 	}
 }

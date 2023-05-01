@@ -1,5 +1,6 @@
 package com.moviebookingapp.ServiceTest;
 
+import com.moviebookingapp.repository.SeatRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -7,14 +8,17 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.kafka.core.KafkaTemplate;
 
 import com.moviebookingapp.entities.Customer;
 import com.moviebookingapp.entities.Movie;
 import com.moviebookingapp.entities.MovieCompositeKey;
+import com.moviebookingapp.exception.MovieFoundException;
 import com.moviebookingapp.exception.MovieNotFoundException;
 import com.moviebookingapp.repository.MovieRepository;
 import com.moviebookingapp.sequenceGenerators.DBSequence;
 import com.moviebookingapp.sequenceGenerators.DBSequenceGenerator;
+import com.moviebookingapp.service.MovieService;
 import com.moviebookingapp.service.impl.MovieServiceImpl;
 import com.moviebookingapp.service.impl.SeatServiceImpl;
 
@@ -39,23 +43,30 @@ public class MovieServiceTest {
 	private MovieServiceImpl movieService;
 
 	@Mock
+	private KafkaTemplate kafkaTemplate;
+
+	@Mock
 	private DBSequenceGenerator sequenceGenerator;
 
 	@Mock
 	private SeatServiceImpl seatService;
+	@Mock
+	private SeatRepository seatRepository;
+
+	private MovieCompositeKey movieComp;
 
 	private Movie movie;
 
 	@BeforeEach
 	public void setup() {
-		MovieCompositeKey movieComp = MovieCompositeKey.builder().movieName("3idiot").theatreName("PVR").build();
+		movieComp = MovieCompositeKey.builder().movieName("3idiot").theatreName("PVR").build();
 		movie = Movie.builder().movieId(1).totalNoOfTickets(23).noOfTicketsSold(7).movieCost(54)
 				.ticketStatus("BOOK ASAP").compositeId(movieComp).build();
 	}
 
 	@DisplayName("Junit test for add movies")
 	@Test
-	public void addMovieTest_Success() throws MovieNotFoundException {
+	public void addMovieTest_Success() throws MovieNotFoundException, MovieFoundException {
 		when(movieRepository.save(movie)).thenReturn(movie);
 		Movie movie2 = movieService.addMovie(movie);
 		assertThat(movie2).isNotNull();
@@ -66,7 +77,7 @@ public class MovieServiceTest {
 	public void addMovieTest_Exception() {
 		when(movieRepository.findByCompositeIdMovieNameAndCompositeIdTheatreName(movie.getCompositeId().getMovieName(),
 				movie.getCompositeId().getTheatreName())).thenReturn(movie);
-		MovieNotFoundException e = assertThrows(MovieNotFoundException.class, () -> {
+		MovieFoundException e = assertThrows(MovieFoundException.class, () -> {
 			movieService.addMovie(movie);
 		});
 		verify(movieRepository, never()).save(movie);
@@ -148,7 +159,44 @@ public class MovieServiceTest {
 
 		movieService.removeMovie(1);
 
+
 		verify(movieRepository, times(1)).findByMovieId(1);
+	}
+
+	@DisplayName("Junit test for Update Ticket status ")
+	@Test
+	public void givenMovie_whenUpdateTicketStatus_thenUpdateStatus() throws MovieNotFoundException {
+		when(movieRepository.findByCompositeIdMovieNameAndCompositeIdTheatreName(movieComp.getMovieName(),
+				movieComp.getTheatreName())).thenReturn(movie);
+		movie.setNoOfTicketsSold(movie.getTotalNoOfTickets());
+		movieService.updateTicketStatus(movieComp.getMovieName(), movieComp.getTheatreName());
+		assertEquals("SOLD OUT", movie.getTicketStatus());
+
+	}
+
+	@DisplayName("Junit test for Update Ticket status (Exception ) ")
+	@Test
+	public void givenNoMovie_whenUpdateTicketStatus_thenException() throws MovieNotFoundException {
+		when(movieRepository.findByCompositeIdMovieNameAndCompositeIdTheatreName(movieComp.getMovieName(),
+				movieComp.getTheatreName())).thenReturn(null);
+
+		MovieNotFoundException e = assertThrows(MovieNotFoundException.class, () -> {
+			movieService.updateTicketStatus(movieComp.getMovieName(), movieComp.getTheatreName());
+		});
+		verify(movieRepository, never()).save(movie);
+		assertEquals("Movie with this id and Name does not exist", e.getMessage());
+
+	}
+	
+	@DisplayName("Junit test for  Not Updating  Ticket status  ")
+	@Test
+	public void givenMovie_whenUpdateTicketStatus_thenNotUpdateTicketStatus() throws MovieNotFoundException {
+		when(movieRepository.findByCompositeIdMovieNameAndCompositeIdTheatreName(movieComp.getMovieName(),
+				movieComp.getTheatreName())).thenReturn(movie);
+
+		movieService.updateTicketStatus(movieComp.getMovieName(), movieComp.getTheatreName());
+		assertEquals("BOOK ASAP", movie.getTicketStatus());
+
 	}
 
 }

@@ -27,7 +27,7 @@ public class Movie {
  
 	
 	@EmbeddedId
-	private MovieCompositeKey compositeId;
+	private MovieCompositeKey compositeId; 
 
 	@Min(50)
 	@Max(200)

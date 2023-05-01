@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 @RestControllerAdvice
 public class ApplicationExceptionHandler {
-
+ 
 	@ResponseStatus(HttpStatus.BAD_REQUEST)
 	@ExceptionHandler(MethodArgumentNotValidException.class)
 	public Map<String,String> handleInvalidArgument(MethodArgumentNotValidException ex){
@@ -23,9 +23,18 @@ public class ApplicationExceptionHandler {
 		return errorMap;
 	}
 	
-	@ResponseStatus(HttpStatus.BAD_REQUEST)
+	@ResponseStatus(HttpStatus.NOT_FOUND)
 	@ExceptionHandler(MovieNotFoundException.class)
 	public Map<String,String> handleMovieException(MovieNotFoundException ex){
+		Map<String,String> errorMap=new HashMap<>();
+		errorMap.put("errorMessage", ex.getMessage());
+	
+		return errorMap;
+	}
+	
+	@ResponseStatus(HttpStatus.BAD_REQUEST)
+	@ExceptionHandler(MovieFoundException.class)
+	public Map<String,String> handleMovieException(MovieFoundException ex){
 		Map<String,String> errorMap=new HashMap<>();
 		errorMap.put("errorMessage", ex.getMessage());
 	
@@ -49,6 +58,25 @@ public class ApplicationExceptionHandler {
 	
 		return errorMap;
 	}
+	@ResponseStatus(HttpStatus.BAD_REQUEST)
+	@ExceptionHandler(CustomerNotFoundException.class)
+	public Map<String,String> handleCustomerException(CustomerNotFoundException ex){
+		Map<String,String> errorMap=new HashMap<>();
+		errorMap.put("errorMessage", ex.getMessage());
+	
+		return errorMap;
+	}
+	
+	@ResponseStatus(HttpStatus.BAD_REQUEST)
+	@ExceptionHandler(CommonException.class)
+	public Map<String,String> handleCustomerException(CommonException ex){
+		Map<String,String> errorMap=new HashMap<>();
+		errorMap.put("errorMessage", ex.getMessage());
+	
+		return errorMap;
+	}
+	
+	
 	
 	
 	
