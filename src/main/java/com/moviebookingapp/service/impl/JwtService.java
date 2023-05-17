@@ -6,6 +6,10 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Function;
 
+import com.moviebookingapp.entities.AuthResponse;
+import com.moviebookingapp.entities.Customer;
+import com.moviebookingapp.repository.CustomerRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 
@@ -18,6 +22,8 @@ import io.jsonwebtoken.security.Keys;
 @Component
 public class JwtService {
 
+	@Autowired
+	 private CustomerRepository customerRepository;
 	public static final String SECRET = "6A586E3272357538782F413F4428472B4B6250655367566B5970337336763979";
 
 	public String extractUsername(String token) {
@@ -46,9 +52,13 @@ public class JwtService {
 		return (username.equals(userDetails.getUsername()) && !isTokenExpired(token));
 	}
 
-	public String generateToken(String userName) {
+	public AuthResponse generateToken(String userName) {
 		Map<String, Object> claims = new HashMap<>();
-		return createToken(claims, userName);
+
+		String token= createToken(claims, userName);
+		Customer customer=customerRepository.findByUserName(userName).get();
+		return new AuthResponse(customer,token);
+
 	}
 
 	private String createToken(Map<String, Object> claims, String userName) {

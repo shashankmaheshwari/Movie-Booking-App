@@ -6,11 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestHeader;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.moviebookingapp.entities.Customer;
 import com.moviebookingapp.exception.CommonException;
@@ -22,6 +18,7 @@ import com.moviebookingapp.service.impl.JwtService;
 import jakarta.validation.Valid;
 
 @RestController
+@CrossOrigin("*")
 public class CustomerController {
 
 	Logger logger = LoggerFactory.getLogger(CustomerController.class);
@@ -33,8 +30,8 @@ public class CustomerController {
 	private JwtService jwtService;
 
 	@PostMapping("/register")
-	public ResponseEntity<String> addCustomer(@RequestBody @Valid Customer customer) throws CustomerFoundException {
-		ResponseEntity<String> response = null;
+	public ResponseEntity<?> addCustomer(@RequestBody @Valid Customer customer) throws CustomerFoundException {
+		ResponseEntity<?> response = null;
 		if (customer == null) {
 			logger.error("-------------Please Enter Customer Values--------");
 			response = new ResponseEntity<>(HttpStatus.NO_CONTENT);

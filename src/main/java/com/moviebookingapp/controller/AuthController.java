@@ -1,10 +1,12 @@
 package com.moviebookingapp.controller;
 
+import com.moviebookingapp.entities.AuthResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -13,6 +15,7 @@ import com.moviebookingapp.entities.AuthRequest;
 import com.moviebookingapp.service.impl.JwtService;
 
 @RestController
+@CrossOrigin("*")
 public class AuthController {
 
 	@Autowired
@@ -25,7 +28,7 @@ public class AuthController {
 	
 
 	@PostMapping("/login")
-	public String authenticateAndGetToken(@RequestBody AuthRequest authRequest) {
+	public AuthResponse authenticateAndGetToken(@RequestBody AuthRequest authRequest) {
 		Authentication authentication = authenticationManager.authenticate(
 				new UsernamePasswordAuthenticationToken(authRequest.getUserName(), authRequest.getPassword()));
 		if (authentication.isAuthenticated()) {

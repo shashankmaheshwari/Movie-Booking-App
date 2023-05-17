@@ -39,6 +39,7 @@ public class Customer {
 	private String lastName;
 
 	@Email(message = "Invalid Email address")
+	@NotBlank(message = "Email can't be empty ")
 	@Indexed(unique = true)
 	private String email;
 
