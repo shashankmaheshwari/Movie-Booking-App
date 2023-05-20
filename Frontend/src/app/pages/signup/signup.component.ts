@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { CustomerService } from 'src/app/services/customer.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import Swal from 'sweetalert2';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-signup',
@@ -10,7 +11,7 @@ import Swal from 'sweetalert2';
   styleUrls: ['./signup.component.css'],
 })
 export class SignupComponent implements OnInit {
-  constructor(private customerService:CustomerService,private _snackBar:MatSnackBar) {}
+  constructor(private customerService:CustomerService,private _snackBar:MatSnackBar,private router:Router) {}
   public customer = {
     userName: '',
     firstName: '',
@@ -20,6 +21,7 @@ export class SignupComponent implements OnInit {
     confirmPassword: '',
     contactNumber: '',
   };
+  hide=true;
 
   ngOnInit(): void {}
   formSubmit() {
@@ -28,8 +30,10 @@ export class SignupComponent implements OnInit {
     
     this.customerService.registerCustomer(this.customer).subscribe(
      (response: any)=>{
-      Swal.fire('Successfully  User Registered !!','success');
+      Swal.fire('Successfully  User Registered !!','User Registered !!','success');
         console.log(response);
+        this.router.navigate(['/login']);
+        
             
       },
       (error:any)=>{

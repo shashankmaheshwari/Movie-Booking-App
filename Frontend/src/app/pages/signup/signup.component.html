@@ -38,27 +38,37 @@
           </mat-form-field>
 
            <!------------ password ------------>
+
+         
            <mat-form-field class="full-width" appearance="outline">
             <mat-label>Password</mat-label>
+            
             <input [(ngModel)]="customer.password" required
-            name="password"
-            type="password" matInput placeholder="Enter here">
+            name="password" matInput [type]="hide ? 'password' : 'text'">
+            <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+              <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+            </button>
           </mat-form-field>
            <!------------ Confirm password ------------>
 
            
            <mat-form-field class="full-width" appearance="outline">
             <mat-label> Confirm Password</mat-label>
-            <input [(ngModel)]="customer.confirmPassword" required name="confirmPassword"
-            type="password" matInput placeholder="Enter here">
+            <input [(ngModel)]="customer.confirmPassword" required
+            name="confirmPassword" matInput [type]="hide ? 'password' : 'text'">
+            <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+              <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+            </button>
           </mat-form-field>
           <!-------------- phone no ----------------->
+        
           <mat-form-field class="full-width" appearance="outline">
             <mat-label>Phone Number</mat-label>
             <input [(ngModel)]="customer.contactNumber" required
             name="contactNumber"
             
             type="number" matInput placeholder="Enter here">
+             <mat-icon matSuffix>phone</mat-icon>
           </mat-form-field>
 
           <div class="container text-center">

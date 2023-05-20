@@ -24,6 +24,10 @@ import { CustomerDashboardComponent } from './pages/customer/customer-dashboard/
 import {MatListModule} from '@angular/material/list';
 import { AdminSideBarComponent } from './pages/admin/admin-side-bar/admin-side-bar.component';
 import { ProfileComponent } from './components/profile/profile.component';
+import { PasswordComponent } from './components/password/password.component';
+import {MatGridListModule} from '@angular/material/grid-list';
+import { AddMovieComponent } from './pages/admin/add-movie/add-movie.component';
+
 
 
 
@@ -38,8 +42,9 @@ import { ProfileComponent } from './components/profile/profile.component';
     AdminDashboardComponent,
     ProfileComponent,
     CustomerDashboardComponent,
-    
-     AdminSideBarComponent
+    AdminSideBarComponent,
+    PasswordComponent,
+    AddMovieComponent
   ],
   imports: [
     BrowserModule,
@@ -54,7 +59,8 @@ import { ProfileComponent } from './components/profile/profile.component';
     MatCardModule,
     MatToolbarModule,
     MatIconModule,
-    MatListModule
+    MatListModule,
+    MatGridListModule
   ],
   providers: [],
   bootstrap: [AppComponent]

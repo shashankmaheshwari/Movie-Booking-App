@@ -8,6 +8,8 @@ import { CustomerDashboardComponent } from './pages/customer/customer-dashboard/
 import { CustomerGuard } from './services/customer.guard';
 import { AdminGuard } from './services/admin.guard';
 import { ProfileComponent } from './components/profile/profile.component';
+import { PasswordComponent } from './components/password/password.component';
+import { AddMovieComponent } from './pages/admin/add-movie/add-movie.component';
 
 const routes: Routes = [
   {
@@ -37,6 +39,14 @@ const routes: Routes = [
       {
         path:'profile',
         component:ProfileComponent,
+      },
+      {
+        path:'password',
+        component:PasswordComponent,
+      },
+      {
+        path:'addMovie',
+        component:AddMovieComponent,
       }
      
     ]
