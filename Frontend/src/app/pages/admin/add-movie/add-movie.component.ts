@@ -12,7 +12,7 @@ export class AddMovieComponent implements OnInit {
   movie:Movie;
   constructor(private _movieService:MovieService) {
     this.movie=new Movie(
-      new compositeId("", ""),0,0
+      new compositeId("", ""),0,0,""
     );
    }
   

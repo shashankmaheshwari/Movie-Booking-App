@@ -38,7 +38,8 @@ public class Movie {
 	@Min(0)
 	@Max(10000)
 	private double movieCost;
-	
+
+	private  String movieImage="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTTPbVdWto8uKbKpvZ5BjYd_LQ0_zLo9GnYsQ&usqp=CAU";
 	private String ticketStatus="BOOK ASAP";
 }
 
