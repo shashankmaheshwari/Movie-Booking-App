@@ -11,10 +11,12 @@ import { PasswordComponent } from '../password/password.component';
 export class ProfileComponent implements OnInit {
   
   user:any;
+  profilePic:string="";
   constructor(private login:LoginService) { }
 
   ngOnInit(): void {
     this.user=this.login.getCustomer();
+   this.profilePic=  `https://api.dicebear.com/6.x/notionists/svg?seed=${this.user.firstName}+${this.user.lastName}`
   
   }
 

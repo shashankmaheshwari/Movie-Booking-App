@@ -29,6 +29,7 @@ public interface MovieService {
 	
 	//check ticket Status
 	public void  updateTicketStatus(String movieName,String theatreName) throws MovieNotFoundException;
-	
 
+
+	List<Movie> searchByMovieOrTheatreNames(String searchKeyword);
 }

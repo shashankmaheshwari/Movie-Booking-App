@@ -36,6 +36,7 @@ public class SecurityConfig {
 			"/moviebooking/all",
 			"/register",
 			"/login",
+             "/moviebooking/movies/search/**",
 			"/swagger-resources/**",
 	        "/swagger-ui/**",
 	        "/v3/api-docs/**",
@@ -44,7 +45,7 @@ public class SecurityConfig {
 
 	@Bean
 	public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-		return http.csrf().disable().authorizeHttpRequests()
+		return http.cors().and().csrf().disable().authorizeHttpRequests()
 				.requestMatchers(PUBLIC_URLS)
 				.permitAll().and()
 				// add ticket seat also

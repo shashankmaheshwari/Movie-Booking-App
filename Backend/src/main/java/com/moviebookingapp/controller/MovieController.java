@@ -20,7 +20,7 @@ import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/moviebooking")
-@CrossOrigin("*")
+@CrossOrigin(origins = "*")
 public class MovieController {
 
 	Logger logger = LoggerFactory.getLogger(MovieController.class);
@@ -43,7 +43,7 @@ public class MovieController {
 		List<Movie> movie = movieService.viewMovieList();
 		if (movie.size() != 0) {
 			logger.info("-------Movie List Fetched---------");
-			return new ResponseEntity<>(movieService.viewMovieList(), HttpStatus.FOUND);
+			return new ResponseEntity<>(movieService.viewMovieList(), HttpStatus.OK);
 		} else {
 			logger.info("-------Movie Not Found---------");
 			//throw new MovieNotFoundException("Movie Not Found");
@@ -60,7 +60,7 @@ public class MovieController {
 		List<Movie> movies = movieService.searchMovie(movieName);
 		if (movies.size() != 0) {
 			logger.info("-------Movie With Movie Name " + movieName + " Found---------");
-			return new ResponseEntity<>(movies, HttpStatus.FOUND);
+			return new ResponseEntity<>(movies, HttpStatus.OK);
 
 		} else {
 			logger.info("-------Movie Not Found---------");
@@ -140,6 +140,25 @@ public class MovieController {
 			return new ResponseEntity<>("Movie Not Foud",HttpStatus.NOT_FOUND);
 		}
 		
+	}
+
+	///SEARCH NEW FUNCTIONALITY
+
+	@GetMapping("/movies/search")
+	public ResponseEntity<?> optimisedSearch(@RequestParam(defaultValue = "") String searchKeyword) throws MovieNotFoundException {
+		ResponseEntity<?> response = null;
+
+		List<Movie> movies = movieService.searchByMovieOrTheatreNames(searchKeyword);
+		if (movies.size() != 0) {
+			logger.info("-------Movie  Found---------");
+			return new ResponseEntity<>(movies, HttpStatus.OK);
+
+		} else {
+			logger.info("-------Movie Not Found---------");
+			//throw new MovieNotFoundException("Movie Not Found");
+			return new ResponseEntity<>("Movie Not Found", HttpStatus.NOT_FOUND);
+		}
+
 	}
 
 }

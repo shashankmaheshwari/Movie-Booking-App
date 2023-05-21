@@ -116,5 +116,9 @@ public class MovieServiceImpl implements MovieService {
 		return; 
 
 	}
+	@Override
+	public List<Movie> searchByMovieOrTheatreNames(String searchKeyword) {
+		return movieRepository.findByMovieNameOrTheatreName(searchKeyword);
+	}
 
 }

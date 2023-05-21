@@ -30,6 +30,9 @@ import { AddMovieComponent } from './pages/admin/add-movie/add-movie.component';
 
 
 
+  
+
+
 
 @NgModule({
   declarations: [
@@ -44,7 +47,8 @@ import { AddMovieComponent } from './pages/admin/add-movie/add-movie.component';
     CustomerDashboardComponent,
     AdminSideBarComponent,
     PasswordComponent,
-    AddMovieComponent
+    AddMovieComponent,
+    
   ],
   imports: [
     BrowserModule,
@@ -60,7 +64,8 @@ import { AddMovieComponent } from './pages/admin/add-movie/add-movie.component';
     MatToolbarModule,
     MatIconModule,
     MatListModule,
-    MatGridListModule
+    MatGridListModule,
+    
   ],
   providers: [],
   bootstrap: [AppComponent]
