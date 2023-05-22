@@ -1,6 +1,7 @@
 .parent{
   display: flex;
   justify-content: center;
+ 
 }
 .container1{
   /* background: white; */
@@ -10,7 +11,8 @@
 .banner{
   height: 500px;
   width: 100%;
-  background-color: red;
+  
+  /* margin-top: 65px; */
 }
 .movieView{
   display: flex;
@@ -23,12 +25,12 @@
   height: 50px;
   width: 100%;
   background: white;
-  border-radius: 10px;
+  border-radius: 50px;
   border:2px;
   border-image-source: linear-gradient(116.58deg, #FF53C0 24.28%, rgba(255, 83, 192, 0) 52.53%);
   margin-bottom: 16px;
-
   align-items: center;
+  justify-content: space-between;
 }
 .searchIcon{
   display: flex;
@@ -96,10 +98,7 @@ input:focus{
   justify-content: space-between;
   align-items: flex-end;
 }
-button{
- 
- 
-}
+
 .movieCard:hover {
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Customize the box shadow as desired */
   transition: box-shadow 0.3s; /* Smooth transition when applying the box shadow */

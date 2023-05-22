@@ -1,0 +1,14 @@
+<div style=" background-image: url({{currentImage}});"class="carousel-container">
+    <!-- <img [src]="currentImage" alt="Carousel Image" /> -->
+   
+
+    <div class="indicators">
+      <span 
+        class="indicator"
+        *ngFor="let image of images; let i = index"
+        [class.active]="i === activeIndex"
+        (click)="goToImage(i)"
+      ></span>
+    </div>
+  </div>
+  

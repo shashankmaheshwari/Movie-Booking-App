@@ -19,14 +19,13 @@ import { FooterComponent } from './components/footer/footer.component';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatIconModule} from '@angular/material/icon';
 import { AdminDashboardComponent } from './pages/admin/admin-dashboard/admin-dashboard.component';
-
 import { CustomerDashboardComponent } from './pages/customer/customer-dashboard/customer-dashboard.component';
 import {MatListModule} from '@angular/material/list';
-import { AdminSideBarComponent } from './pages/admin/admin-side-bar/admin-side-bar.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { PasswordComponent } from './components/password/password.component';
 import {MatGridListModule} from '@angular/material/grid-list';
 import { AddMovieComponent } from './pages/admin/add-movie/add-movie.component';
+import { CarouselComponent } from './components/carousel/carousel.component';
 
 
 
@@ -45,9 +44,9 @@ import { AddMovieComponent } from './pages/admin/add-movie/add-movie.component';
     AdminDashboardComponent,
     ProfileComponent,
     CustomerDashboardComponent,
-    AdminSideBarComponent,
     PasswordComponent,
     AddMovieComponent,
+    CarouselComponent
     
   ],
   imports: [
