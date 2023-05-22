@@ -1,26 +1,107 @@
-.example-card {
-    max-width: 400px;
-  }
-  
-  .example-header-image {
-    background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
-    background-size: cover;
-  }
-  .mat-grid-tile{
-     border-radius: 5px;
-     border: 1px solid lightgrey;   
-     
+.parent{
+  display: flex;
+  justify-content: center;
+}
+.container1{
+  /* background: white; */
+  width: 92%;
+
+}
+.banner{
+  height: 500px;
+  width: 100%;
+  background-color: red;
+}
+.movieView{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  width:100%;
+}
+.inputContainer{
+  display: flex;
+  height: 50px;
+  width: 100%;
+  background: white;
+  border-radius: 10px;
+  border:2px;
+  border-image-source: linear-gradient(116.58deg, #FF53C0 24.28%, rgba(255, 83, 192, 0) 52.53%);
+  margin-bottom: 16px;
+
+  align-items: center;
+}
+.searchIcon{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height:40px;
+  border-radius: 100%;
+  color: white;
+  background-color: #FF53C0;
+  width:40px;
+}
+#search{
+width: 90%;
+height: 80%;
+border:none;
+margin: 0px;
+
+
 }
 
 
-  
 
-  .searchField{
-    width: 100%;
-  }
-  .green-button {
-    background-color: green;
-    color: white;
-  }
-  
-  
+input:focus{
+  outline: none;
+}
+.movieCard{
+  height:500px;
+  width: 300px;
+  /* background-color: red; */
+  background:  linear-gradient(115.29deg, #B6116B 15.07%, #3B1578 104.4%);
+  padding:16px;
+  margin: 16px;
+  border: 1px solid black;
+  color:white;
+  border-radius: 30px;
+}
+.movieHeader{
+  height:18%;
+  /* background-color: green; */
+}
+.movieTitle{
+  font-size: 22px;
+  line-height: 25px;
+  font-weight: bold;
+  /* background-color:blue; */
+}
+.movieSubTitle{
+  font-size: 14px;
+  /* background-color: yellow; */
+  margin-top: 8px;
+}
+.movieBanner{
+  height: 72%;
+  width: 100%;
+  margin-top: auto;
+
+}
+.movieBanner img{
+   height: 100%;
+   width:  100%;
+}
+.movieFooter{
+  height: 10%;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+button{
+ 
+ 
+}
+.movieCard:hover {
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Customize the box shadow as desired */
+  transition: box-shadow 0.3s; /* Smooth transition when applying the box shadow */
+  transform: scale(1.1);
+}

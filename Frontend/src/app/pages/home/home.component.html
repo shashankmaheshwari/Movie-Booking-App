@@ -1,34 +1,72 @@
+<div class="banner">BANNER</div>
 
-  <mat-form-field appearance="outline" class="searchbar w-50">
-
-     <mat-label class="searchField">Search for Movies</mat-label>
-    
-     <input matInput type="text" name="search" id="search"
-    
-     #searchKey (keyup)="searchMovies(searchKey.value)"
-    
-    placeholder="Search for Movies"><mat-icon matSuffix>search</mat-icon>
-    
-    </mat-form-field>
-<mat-grid-list   cols="4" rowHeight="2:3" gutterSize="5">
-
-    <mat-grid-tile *ngFor="let m of movieList">
-    
-        <mat-card class="example-card">
-            <mat-card-header>
-              <div mat-card-avatar class="example-header-image"></div>
-              <mat-card-title>{{m.compositeId.movieName}}</mat-card-title>
-              <mat-card-subtitle>{{m.compositeId.theatreName}} </mat-card-subtitle>
-            </mat-card-header>
-            <img mat-card-image src={{m.movieImage}} alt="Photo of a Shiba Inu">
+<div class="bootstrap-wrapper parent">
+ 
+  <div class="container1">
+    <div class="row" style="margin-top: 20px">
+      <div class="col-md-6 offset-md-3 inputContainer">
+       
+        
+          <input 
+            matInput
+            type="text"
+            name="search"
+            id="search"
+            #searchKey
+            (keyup)="searchMovies(searchKey.value)"
+            placeholder="Search for Movies"
+          />
+          <span class="searchIcon ">
             
-            <mat-card-actions>
-              <button  class="green-button" *ngIf="m.ticketStatus=='BOOK ASAP'" mat-button >{{m.ticketStatus}}</button>
-              <button *ngIf="m.ticketStatus=='SOLD OUT'" mat-button color="warn">{{m.ticketStatus}}</button>
-            </mat-card-actions>
-          </mat-card>
-          
-    
-    </mat-grid-tile>
-</mat-grid-list>
-    
+            <mat-icon>search</mat-icon>
+
+            </span>
+        
+      
+      </div>
+    </div>
+    <!-- Movie list -->
+    <div class="movieView">
+      <div class="movieCard "   *ngFor="let m of movieList">
+        <div class="movieHeader">
+          <div class="movieTitle">
+            {{ m.compositeId.movieName }}
+          </div>
+          <div class="movieSubTitle">
+            {{ m.compositeId.theatreName }}
+          </div>
+        </div>
+        <div class="movieBanner">
+          <img src="{{ m.movieImage }}" />
+        </div>
+        <div class="movieFooter">
+          <button
+            mat-raised-button
+            color="primary"
+            *ngIf="m.ticketStatus == 'BOOK ASAP'"
+            mat-button
+          >
+            {{ m.ticketStatus }}
+          </button>
+          <button
+            mat-raised-button
+            *ngIf="m.ticketStatus == 'SOLD OUT'"
+            mat-button
+            color="warn"
+          >
+            {{ m.ticketStatus }}
+          </button>
+          <button
+          mat-raised-button
+            (click)="deleteMovie(m.compositeId.movieName, m.movieId)"
+            aria-label="Example icon button with a delete icon"
+            color="warn"
+
+          >
+            <mat-icon>delete</mat-icon>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

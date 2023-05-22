@@ -2,7 +2,9 @@
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; 
-    background-color: #f5f5f5;}
+    background-color:#130B2B;
+    /* background: linear-gradient(170.9deg, #170641 0.99%, #2E1371 36.14%, #00021B 109.84%); */
+}
 .text-center{
     text-align: center;
 }

@@ -30,11 +30,12 @@ export class SignupComponent implements OnInit {
     
     this.customerService.registerCustomer(this.customer).subscribe(
      (response: any)=>{
-      Swal.fire('Successfully  User Registered !!','User Registered !!','success');
+      Swal.fire('Successfully  User Registered !!','User Registered !!','success').then((e)=>{
         console.log(response);
         this.router.navigate(['/login']);
+      })
         
-            
+          
       },
       (error:any)=>{
        this.showValuesInSnackbar(error.error);

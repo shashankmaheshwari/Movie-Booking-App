@@ -27,7 +27,13 @@ export class MovieService {
    // ADD Movie
    public addMovie(movie:any){
     console.log(`${localStorage.getItem("token")}`);
-    return this.http.post(`${baseUrl}/moviebooking/addMovie`,movie,{headers:this.requestHeader})
+    return this.http.post(`${baseUrl}/moviebooking/addMovie`,movie,{headers:this.requestHeader});
+   }
+   //delete Movie
+   public deleteMovie(movieId:any,movieName:any){
+    
+    return this.http.delete(`${baseUrl}/moviebooking/${movieName}/delete/${movieId}`,{headers:this.requestHeader});
+
    }
 
   }

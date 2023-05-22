@@ -1,4 +1,4 @@
-<mat-card>
+<mat-card class="sideBar">
     <mat-action-list>
       <div mat-subheader>Menu</div>
       <button routerLink="/admin" mat-list-item>
@@ -12,6 +12,11 @@
       </button>
       <button mat-list-item routerLink="/admin/profile">
         <mat-icon mat-list-icon>logout</mat-icon> Logout
+      </button>
+      <button mat-list-item routerLink="/admin/password">
+        <mat-icon mat-list-icon><span class="material-symbols-outlined">
+          lock_reset
+          </span></mat-icon>Change Password
       </button>
     </mat-action-list>
   </mat-card>
