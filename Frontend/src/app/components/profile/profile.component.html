@@ -1,20 +1,22 @@
-
+<div class="profile">
 <mat-card *ngIf="user">
-    <h1>Your Profile Details</h1>
-    <!-- {{ user | json }} -->
+    
+    
     <mat-card-content>
       <div class="bootstrap-wrapper">
         <div class="container">
-          <div class="container text-center">
-            <img
-              src={{profilePic}}
-              alt=""
-              class="profile-image"
-            />
-            <!-- https://ui-avatars.com/api/?name=${user.firstName}+${user.lastName} -->
-            <h1 class="mt20">{{ user.firstName }} {{ user.lastName }}</h1>
+          <div class="container1 text-center">
+            
+            <h1 class="userName">Hi,{{ user.firstName }} {{ user.lastName }}</h1>
           </div>
-  
+          <img
+          src={{profilePic}}
+          alt=""
+          class="profile-image"
+        />
+        <div class="userDetails">
+          <h1> Profile Details</h1>
+      </div>
           <div class="row">
             <div class="col-md-10 offset-md-1">
               <!-- //table Details  -->
@@ -48,6 +50,9 @@
     </mat-card-content>
     <mat-card-actions class="text-center">
       <button  mat-raised-button color="primary" routerLink="/admin/password">UPDATE PASSWORD</button>
+      <button  class="ml20"mat-raised-button color="accent" routerLink="/admin">HOME PAGE</button>
+    
     </mat-card-actions>
   </mat-card>
+</div>
   

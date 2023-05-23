@@ -14,7 +14,8 @@ export class CarouselComponent implements OnInit {
   images: string[] = [
     'https://assets-in.bmscdn.com/iedb/movies/images/mobile/listing/xxlarge/ib71-et00312966-1683884508.jpg',
     'https://assets-in.bmscdn.com/iedb/movies/images/mobile/listing/xxlarge/guardians-of-the-galaxy-vol-3-et00310794-1683529214.jpg',
-    'https://assets-in.bmscdn.com/iedb/movies/images/mobile/listing/xxlarge/2018-et00357072-1681718285.jpg'
+    'https://assets-in.bmscdn.com/iedb/movies/images/mobile/listing/xxlarge/2018-et00357072-1681718285.jpg',
+     
   ];
   currentImage: string = this.images[0];
   activeIndex: number = 0;

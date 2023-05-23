@@ -27,7 +27,7 @@ import {MatGridListModule} from '@angular/material/grid-list';
 import { AddMovieComponent } from './pages/admin/add-movie/add-movie.component';
 import { CarouselComponent } from './components/carousel/carousel.component';
 
-
+import {MatMenuModule} from '@angular/material/menu';
 
   
 
@@ -64,6 +64,7 @@ import { CarouselComponent } from './components/carousel/carousel.component';
     MatIconModule,
     MatListModule,
     MatGridListModule,
+    MatMenuModule
     
   ],
   providers: [],

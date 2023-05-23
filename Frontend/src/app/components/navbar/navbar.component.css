@@ -5,3 +5,22 @@
     background:  linear-gradient(115.29deg, #B6116B 15.07%, #3B1578 104.4%);
   }
   
+  .mat-toolbar{
+    display: flex;
+    /* align-items: center; */
+    justify-content: space-between;
+    /* background-color: blue; */
+  }
+  .movieIcon{
+    display: flex;
+    align-items: start;
+    justify-content: center;
+    /* background-color: black; */
+  }
+  .navbarButtons{
+    width: 40%;
+    display: flex; 
+    justify-content: end;
+    /* background-color:green; */
+  }
+
