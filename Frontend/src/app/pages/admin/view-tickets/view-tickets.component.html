@@ -1,0 +1,23 @@
+<div class="container1">
+  <div class="card" *ngFor="let t of ticket">
+    <div class="header">
+      <div class="movieName">{{t.movieName}}</div>
+      <div class="theatreName">{{t.theatreName}}</div>
+    </div>
+     <div class="content">
+        <div><h3>USERID-1</h3></div>
+        <img class ="barcodeImg"src="..\..\..\assets\seats.png" alt="">
+        <div  class=" text seatValue"*ngFor="let s of t.seats">
+            {{s.seatNumber}}
+         </div>
+     </div>
+    <div class="footer mr20 text">
+        <div>
+            <span class="money mr10">INR</span>
+            <span class="money">{{t.totaCost}}</span>
+        </div>
+        
+        <img class ="imgCSS"src="..\..\..\assets\barcode.png" alt="">
+    </div>
+  </div>
+</div>

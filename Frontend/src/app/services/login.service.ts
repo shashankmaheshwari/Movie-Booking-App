@@ -30,6 +30,7 @@ export class LoginService {
   public logout() {
     localStorage.removeItem('token');
     localStorage.removeItem('customer');
+    localStorage.clear();
     return true;
   }
   /// get token
@@ -62,4 +63,5 @@ export class LoginService {
     return user.role;
     
   }
+ 
 }

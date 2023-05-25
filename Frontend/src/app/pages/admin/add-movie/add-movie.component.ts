@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import compositeId from 'src/app/modals/CompositeId';
 import { Movie } from 'src/app/modals/Movie';
@@ -12,7 +13,7 @@ import Swal from 'sweetalert2';
 })
 export class AddMovieComponent implements OnInit {
   movie:Movie;
-  constructor(private _movieService:MovieService,private router:Router) {
+  constructor(private _movieService:MovieService,private _snackBar:MatSnackBar,private router:Router) {
     this.movie=new Movie(
       new compositeId("", ""),0,0,""
     );
@@ -30,9 +31,43 @@ export class AddMovieComponent implements OnInit {
         })
         
       },(error)=>{
+        // this.showValuesInSnackbar(error.error);
         console.log(error);
+        console.log("fail");
       }
     )
   }
+
+
+
+  showValuesInSnackbar(jsonObject: any) {
+    
+    const keys = Object.keys(jsonObject);
+  
+    let index = 0;
+    const delay = 2000; // Delay in milliseconds between each snackbar
+  
+    const displayNextSnackbar = () => {
+      if (index < keys.length) {
+        const key = keys[index];
+        const displayMessage =  `${jsonObject[key]}`;
+        this.openSnackBar(displayMessage);
+        index++;
+  
+        setTimeout(displayNextSnackbar, delay);
+      }
+    };
+  
+    displayNextSnackbar();
+  }
+  
+  openSnackBar(message: string): void {
+    this._snackBar.open(message, 'Close', {
+      duration: 3000,
+      verticalPosition: 'top',
+      horizontalPosition: 'right'
+    });
+  }
+
 
 }

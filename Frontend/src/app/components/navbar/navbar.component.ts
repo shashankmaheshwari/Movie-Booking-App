@@ -13,6 +13,14 @@ export class NavbarComponent implements OnInit {
 
   ngOnInit(): void {
   }
+  public isAdmin(){
+    if(this.login.isLoggedIn()&&this.login.getRole()=="ADMIN") return true;
+    return false;
+  }
+  public isUser(){
+    if(this.login.isLoggedIn()&&this.login.getRole()=="USER") return true;
+    return false;
+  }
  public logout(){
    this.login.logout();
    this.router.navigate(['/']);

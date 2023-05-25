@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { CustomerService } from 'src/app/services/customer.service';
 import { LoginService } from 'src/app/services/login.service';
-
+import Swal from 'sweetalert2';
 @Component({
   selector: 'app-password',
   templateUrl: './password.component.html',
@@ -9,7 +10,7 @@ import { LoginService } from 'src/app/services/login.service';
 })
 export class PasswordComponent implements OnInit {
 
-  constructor(private login:LoginService,private customer:CustomerService) { }
+  constructor(private login:LoginService,private customer:CustomerService,private router:Router) { }
   public password:any;
   private userName:any;
   private user:any;
@@ -25,6 +26,10 @@ export class PasswordComponent implements OnInit {
     this.customer.changePassword(this.userName,this.password).subscribe(
       (data:any)=>{
         console.log("Password change");
+        Swal.fire('Successfully  Password!!',' Now you need to login again','success').then((e)=>{
+          console.log(data);
+          this.router.navigate(['/login']);
+        })
       },
       (error:any)=>{
         console.log(error);

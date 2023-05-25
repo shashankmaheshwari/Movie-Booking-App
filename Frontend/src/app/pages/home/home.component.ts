@@ -1,5 +1,8 @@
 import { Component, OnInit, Renderer2 } from '@angular/core';
+import { PageEvent } from '@angular/material/paginator';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
+import { LoginService } from 'src/app/services/login.service';
 import { MovieService } from 'src/app/services/movie.service';
 import Swal from 'sweetalert2';
 @Component({
@@ -13,7 +16,7 @@ export class HomeComponent implements OnInit {
   movieList:any=[];
   
 
-  constructor(private _movie:MovieService,private _snak: MatSnackBar,private renderer: Renderer2) { }
+  constructor(private _movie:MovieService,private _snak: MatSnackBar,private renderer: Renderer2,public login:LoginService,private router:Router) { }
 
   ngOnInit(): void {
      this.getAllMovies();
@@ -21,6 +24,14 @@ export class HomeComponent implements OnInit {
   searchMovies(key:any){
     this.movieList=[];
     this.getAllMovies(key);
+  }
+  public isAdmin(){
+    if(this.login.isLoggedIn()&&this.login.getRole()=="ADMIN") return true;
+    return false;
+  }
+  public isUser(){
+    if(this.login.isLoggedIn()&&this.login.getRole()=="USER") return true;
+    return false;
   }
 
   public getAllMovies(key:string=""){
@@ -70,8 +81,28 @@ export class HomeComponent implements OnInit {
     });
    
   }
- 
- 
+  public getMovie(movieName:string,theatreName:string){
+    
+    console.log(movieName);
+      this._movie.getMovie(movieName,theatreName).subscribe(
+          (res)=>{
+            console.log(res);
+            let customerId=this.login.getCustomer().loginId;
+            const updatedmovieName = decodeURIComponent(movieName);
+            console.log(updatedmovieName);
+            this.router.navigate(['/movie', updatedmovieName, theatreName,customerId]);
+
+            // this.router.navigate(["/customer/movie",movieName,id]);
+          },
+          (error)=>{
+            console.log(error);
+          }
+
+      )
+  }
+
+
+
   
 
 

@@ -43,7 +43,7 @@ public class TicketController {
 		ResponseEntity<List<Ticket>> response = null;
 		
 		List<Ticket>tickets=ticketService.viewTickets();
-		response=new  ResponseEntity<List<Ticket>>(tickets,HttpStatus.FOUND);
+		response=new  ResponseEntity<List<Ticket>>(tickets,HttpStatus.OK);
 		logger.info("------- View All Tickets ---------");
 		return response;
 		

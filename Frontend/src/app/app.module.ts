@@ -28,7 +28,9 @@ import { AddMovieComponent } from './pages/admin/add-movie/add-movie.component';
 import { CarouselComponent } from './components/carousel/carousel.component';
 
 import {MatMenuModule} from '@angular/material/menu';
-
+import {MatPaginatorModule} from '@angular/material/paginator';
+import { ViewTicketsComponent } from './pages/admin/view-tickets/view-tickets.component';
+import { TicketBookingComponent } from './pages/customer/ticket-booking/ticket-booking.component';
   
 
 
@@ -46,7 +48,9 @@ import {MatMenuModule} from '@angular/material/menu';
     CustomerDashboardComponent,
     PasswordComponent,
     AddMovieComponent,
-    CarouselComponent
+    CarouselComponent,
+    ViewTicketsComponent,
+    TicketBookingComponent
     
   ],
   imports: [
@@ -64,7 +68,8 @@ import {MatMenuModule} from '@angular/material/menu';
     MatIconModule,
     MatListModule,
     MatGridListModule,
-    MatMenuModule
+    MatMenuModule,
+    MatPaginatorModule
     
   ],
   providers: [],

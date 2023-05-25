@@ -10,6 +10,8 @@ import { AdminGuard } from './services/admin.guard';
 import { ProfileComponent } from './components/profile/profile.component';
 import { PasswordComponent } from './components/password/password.component';
 import { AddMovieComponent } from './pages/admin/add-movie/add-movie.component';
+import { ViewTicketsComponent } from './pages/admin/view-tickets/view-tickets.component';
+import { TicketBookingComponent } from './pages/customer/ticket-booking/ticket-booking.component';
 
 const routes: Routes = [
   {
@@ -47,6 +49,10 @@ const routes: Routes = [
       {
         path:'addMovie',
         component:AddMovieComponent,
+      },
+      {
+        path:'tickets',
+        component:ViewTicketsComponent,
       }
      
     ]
@@ -54,7 +60,18 @@ const routes: Routes = [
     path:'customer',
     component:CustomerDashboardComponent,
     pathMatch:'full',
-    canActivate:[CustomerGuard]
+    canActivate:[CustomerGuard],
+    children:[
+      {
+        path:'',
+        component:HomeComponent,
+      },
+     
+    ]
+  },
+  {
+    path:'movie/:movieName/:theatreName/:customerId',
+    component:TicketBookingComponent,
   }
 ];
 

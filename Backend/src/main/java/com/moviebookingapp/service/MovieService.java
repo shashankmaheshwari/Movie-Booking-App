@@ -32,4 +32,6 @@ public interface MovieService {
 
 
 	List<Movie> searchByMovieOrTheatreNames(String searchKeyword);
+
+	Movie searchByCompositeId(String movieName, String theatreName);
 }

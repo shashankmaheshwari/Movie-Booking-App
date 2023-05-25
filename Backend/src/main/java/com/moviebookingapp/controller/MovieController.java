@@ -79,7 +79,7 @@ public class MovieController {
 		Movie movie = movieService.viewMovie(movieId, movieName);
 		if (movie != null) {
 			logger.info("-------Movie With Movie id " + movieId + " and Movie Name " + movieName + " Found---------");
-			return new ResponseEntity<>(movie, HttpStatus.FOUND);
+			return new ResponseEntity<>(movie, HttpStatus.OK);
 
 		}else {
 			logger.info("-------Movie With Movie id " + movieId + " and Movie Name " + movieName + " Not Found---------");
@@ -159,6 +159,18 @@ public class MovieController {
 			return new ResponseEntity<>("Movie Not Found", HttpStatus.NOT_FOUND);
 		}
 
+	}
+
+	@GetMapping("/search/{movieName}/{theatreName}")
+	public ResponseEntity<?> searchMovieByMovieAndTheatre(@PathVariable String movieName,@PathVariable String theatreName){
+		Movie movie = movieService.searchByCompositeId(movieName,theatreName);
+		if(movie!= null){
+			logger.info("----------------Movie found with given movie name and theatre name------------------");
+			return new ResponseEntity<>(movie,HttpStatus.OK);
+		}else{
+			logger.info("----------------Movies not FOUND...please check movie or theatre name------------------");
+			return new ResponseEntity<>("Movies not FOUND...please check movie or theatre name",HttpStatus.NOT_FOUND);
+		}
 	}
 
 }

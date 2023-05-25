@@ -28,7 +28,8 @@ public interface MovieRepository extends MongoRepository<Movie, MovieCompositeKe
 	List<Movie> findByMovieNameOrTheatreName(String searchKeyword);
 	
 	List<Movie> findAll();
-	
+
+
 
 	
 	

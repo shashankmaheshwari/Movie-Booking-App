@@ -27,49 +27,45 @@
       <mat-icon>menu</mat-icon>
     </button>
     <mat-menu #menu="matMenu">
-      <button mat-menu-item   *ngIf="!login.isLoggedIn()"
-      [routerLink]="'/signup'">
-       
-          Register
-         
-      </button>
-      <button mat-menu-item [routerLink]="'/admin/addMovie'"
-      *ngIf="login.isLoggedIn()">
-        
-            
-      
-            Add Movie
-          
-      </button>
-      <button mat-menu-item [routerLink]="'/admin/profile'"
-      *ngIf="login.isLoggedIn()">
-        
-            
-            
-          
-            {{ login.getCustomer().userName }}
-          
-      </button>
-      <button mat-menu-item  *ngIf="!login.isLoggedIn()"
-      [routerLink]="'/login'"
+      <button
+        mat-menu-item
+        *ngIf="!login.isLoggedIn()"
+        [routerLink]="'/signup'"
       >
-        
-           
-          
-            Login
-          
+        Register
       </button>
-      <button mat-menu-item (click)="logout()"
-      *ngIf="login.isLoggedIn()" [routerLink]="'/admin'">
-        
-            Home Page
-         
+      <button
+        mat-menu-item
+        [routerLink]="'/admin/addMovie'"
+        *ngIf="isAdmin()"
+      >
+        Add Movie
       </button>
-      <button mat-menu-item 
-      *ngIf="login.isLoggedIn()">
-        
-            Logout
-         
+      <button
+        mat-menu-item
+        [routerLink]="'/admin/profile'"
+        *ngIf="isAdmin()"
+      >
+        {{ login.getCustomer().userName }}
+      </button>
+      <button
+        mat-menu-item
+        [routerLink]="'/user/profile'"
+        *ngIf="isUser()"
+      >
+        {{ login.getCustomer().userName }}
+      </button>
+      <button mat-menu-item *ngIf="isAdmin()" [routerLink]="'/admin/tickets'">
+        View Tickets
+      </button>
+      <button mat-menu-item *ngIf="!login.isLoggedIn()" [routerLink]="'/login'">
+        Login
+      </button>
+      <button mat-menu-item *ngIf="login.isLoggedIn()" [routerLink]="'admin'">
+        Home Page
+      </button>
+      <button mat-menu-item (click)="logout()" *ngIf="login.isLoggedIn()">
+        Logout
       </button>
       <!-- <button mat-menu-item>
         <span></span>

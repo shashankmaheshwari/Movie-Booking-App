@@ -31,9 +31,17 @@ export class MovieService {
    }
    //delete Movie
    public deleteMovie(movieId:any,movieName:any){
-    
+    console.log(`${localStorage.getItem("token")}`);
     return this.http.delete(`${baseUrl}/moviebooking/${movieName}/delete/${movieId}`,{headers:this.requestHeader});
-
+   }
+   //get all tickets
+   public getAllTicketsAdmin(){
+    return this.http.get(`${baseUrl}/moviebooking/view/tickets`,{headers:this.requestHeader});
+   }
+   //book a ticket
+   public getMovie(movieName:String,theatreName:String){
+    console.log(`${localStorage.getItem("token")}`);
+    return this.http.get(`${baseUrl}/moviebooking/search/${movieName}/${theatreName}`,{headers:this.requestHeader});
    }
 
   }

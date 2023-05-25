@@ -23,7 +23,7 @@ public class ApplicationExceptionHandler {
 		return errorMap;
 	}
 	
-	@ResponseStatus(HttpStatus.NOT_FOUND)
+	@ResponseStatus(HttpStatus.BAD_REQUEST)
 	@ExceptionHandler(MovieNotFoundException.class)
 	public Map<String,String> handleMovieException(MovieNotFoundException ex){
 		Map<String,String> errorMap=new HashMap<>();

@@ -121,4 +121,9 @@ public class MovieServiceImpl implements MovieService {
 		return movieRepository.findByMovieNameOrTheatreName(searchKeyword);
 	}
 
+	@Override
+	public Movie searchByCompositeId(String movieName, String theatreName) {
+		return movieRepository.findByCompositeIdMovieNameAndCompositeIdTheatreName(movieName,theatreName);
+	}
+
 }
