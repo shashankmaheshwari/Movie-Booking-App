@@ -1,0 +1,49 @@
+.seat-map {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+  }
+  
+  .seat-row {
+    display: flex;
+    gap: 5px;
+  }
+  
+  .seat {
+    position: relative;
+    width: 40px;
+    height: 40px;
+    background-color: #1abc9c;
+    border: 1px solid #ccc;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+  }
+  
+  .seat.unavailable {
+    background-color: #e74c3c;
+    cursor: not-allowed;
+  }
+  
+  .seat .seat-icon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 24px;
+  }
+  
+  .seat .seat-number {
+    font-weight: bold;
+  }
+  
+  .seat .seat-type {
+    font-size: 12px;
+  }
+  
+  .seat.selected {
+    background-color: #2ecc71;
+    color: #fff;
+  }
+  

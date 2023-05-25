@@ -50,7 +50,7 @@
           
         </div>
         <div class="movieFooter">
-          <button (click)="getMovie(m.compositeId.movieName,m.compositeId.theatreName)"class="styleButton"
+          <button (click)="getMovie(m.compositeId.movieName,m.compositeId.theatreName,m.movieId)"class="styleButton"
             mat-raised-button
             color="primary"
             *ngIf="m.ticketStatus == 'BOOK ASAP'"

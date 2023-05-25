@@ -1,18 +1,19 @@
 import { Seat } from "./Seat";
 
+
 export class Ticket{
 
-    seat:Seat[]=[];
+    seats:Seat[]=[];
     movieName:String;
     theatreName:String;
     numberOfTicket:number;
     totalCost:number;
 
-    constructor(seat:Seat[],movieName:String,
+    constructor(seats:Seat[],movieName:String,
         theatreName:String,
         numberOfTicket:number,
         totalCost:number){
-        this.seat=seat;
+        this.seats=seats;
         this.movieName=movieName;
         this.theatreName=theatreName;
         this.numberOfTicket=numberOfTicket;

@@ -58,19 +58,13 @@ const routes: Routes = [
     ]
   },{
     path:'customer',
-    component:CustomerDashboardComponent,
+    component:HomeComponent,
     pathMatch:'full',
     canActivate:[CustomerGuard],
-    children:[
-      {
-        path:'',
-        component:HomeComponent,
-      },
-     
-    ]
+   
   },
   {
-    path:'movie/:movieName/:theatreName/:customerId',
+    path:'movie/:movieName/:theatreName/:customerId/:movieId',
     component:TicketBookingComponent,
   }
 ];

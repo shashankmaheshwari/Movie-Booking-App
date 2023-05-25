@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Seat } from 'src/app/modals/Seat';
+
 import { Ticket } from 'src/app/modals/Ticket';
 import { MovieService } from 'src/app/services/movie.service';
 

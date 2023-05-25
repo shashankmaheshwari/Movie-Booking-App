@@ -41,7 +41,7 @@ public class TicketServiceImpl implements TicketService {
 		if(movie!=null) {
 			int availableTickets=movie.getTotalNoOfTickets()-movie.getNoOfTicketsSold();
 			// BOOK TICKET
-			if(availableTickets>ticket.getNumberOfTicket()) {
+			if(availableTickets>=ticket.getNumberOfTicket()) {
 				List<Seat> listOfSeat=ticket.getSeats();
 				
 				if(listOfSeat.size()!=ticket.getNumberOfTicket()) {

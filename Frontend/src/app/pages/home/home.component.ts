@@ -20,6 +20,8 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
      this.getAllMovies();
+     this.isAdmin();
+     this.isUser();
   }
   searchMovies(key:any){
     this.movieList=[];
@@ -81,8 +83,8 @@ export class HomeComponent implements OnInit {
     });
    
   }
-  public getMovie(movieName:string,theatreName:string){
-    
+  public getMovie(movieName:string,theatreName:string,movieId:any){
+    console.log("clicked");
     console.log(movieName);
       this._movie.getMovie(movieName,theatreName).subscribe(
           (res)=>{
@@ -90,7 +92,7 @@ export class HomeComponent implements OnInit {
             let customerId=this.login.getCustomer().loginId;
             const updatedmovieName = decodeURIComponent(movieName);
             console.log(updatedmovieName);
-            this.router.navigate(['/movie', updatedmovieName, theatreName,customerId]);
+            this.router.navigate(['/movie', updatedmovieName, theatreName,customerId,movieId]);
 
             // this.router.navigate(["/customer/movie",movieName,id]);
           },

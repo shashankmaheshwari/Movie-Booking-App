@@ -31,7 +31,7 @@ export class AddMovieComponent implements OnInit {
         })
         
       },(error)=>{
-        // this.showValuesInSnackbar(error.error);
+         this.showValuesInSnackbar(error.error);
         console.log(error);
         console.log("fail");
       }
@@ -50,7 +50,7 @@ export class AddMovieComponent implements OnInit {
     const displayNextSnackbar = () => {
       if (index < keys.length) {
         const key = keys[index];
-        const displayMessage =  `${jsonObject[key]}`;
+        const displayMessage =  `${key}:${jsonObject[key]}`;
         this.openSnackBar(displayMessage);
         index++;
   
