@@ -1,0 +1,101 @@
+<mat-toolbar class="nav-col">
+    <div class="movieIcon">
+      <a
+        routerLink="/"
+        mat-icon-button
+        class="example-icon"
+        aria-label="Example icon-button with menu icon"
+      >
+        <mat-icon>movie</mat-icon>
+        <span>Book Show</span>
+      </a>
+    </div>
+  
+    <div class="navbarButtons">
+      <!-- <button mat-icon-button *ngIf="login.getCustomer().role!='ADMIN'" [matMenuTriggerFor]="belowMenu">
+      <mat-icon class="rounded">person</mat-icon></button>
+    <mat-menu #belowMenu="matMenu" yPosition="below">
+      <button mat-menu-item routerLink="/profile">Profile</button>
+      <button mat-menu-item *ngIf="login.getCustomer().role=='ADMIN'"   routerLink="/addMovie">Add a Movie</button>
+      <button mat-menu-item (click)="logout()">Logout</button>
+    </mat-menu> -->
+      <button
+        mat-icon-button
+        [matMenuTriggerFor]="menu"
+        aria-label="Example icon-button with a menu"
+      >
+        <mat-icon>menu</mat-icon>
+      </button>
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item>
+          <span>
+            <a
+              *ngIf="!login.isLoggedIn()"
+              [routerLink]="'/signup'"
+              mat-icon-button
+              class="example-icon favorite-icon mr20 ml20"
+              aria-label="Example icon-button with heart icon"
+            >
+              Register
+            </a>
+          </span>
+        </button>
+        <button mat-menu-item >
+          <span>
+            <a
+              [routerLink]="'/admin/addMovie'"
+              *ngIf="login.isLoggedIn()"
+              mat-icon-button
+              class="example-icon favorite-icon ml20"
+              aria-label="Example icon-button with heart icon"
+            >
+              Add Movie
+            </a>
+          </span>
+        </button>
+        <button mat-menu-item>
+          <span>
+            <a
+              [routerLink]="'/admin/profile'"
+              *ngIf="login.isLoggedIn()"
+              mat-icon-button
+              class="example-icon favorite-icon ml20"
+              aria-label="Example icon-button with heart icon"
+            >
+              {{ login.getCustomer().userName }}
+            </a>
+          </span>
+        </button>
+        <button mat-menu-item>
+          <span>
+            <a
+              *ngIf="!login.isLoggedIn()"
+              [routerLink]="'/login'"
+              mat-icon-button
+              class="example-icon favorite-icon"
+              aria-label="Example icon-button with heart icon"
+            >
+              Login
+            </a>
+          </span>
+        </button>
+        <button mat-menu-item>
+          <span>
+            <a
+              (click)="logout()"
+              *ngIf="login.isLoggedIn()"
+              mat-icon-button
+              class="example-icon favorite-icon mr20 ml20"
+              aria-label="Example icon-button with heart icon"
+            >
+              Logout
+            </a>
+          </span>
+        </button>
+        <button mat-menu-item>
+          <span></span>
+        </button>
+      </mat-menu>
+    </div>
+  </mat-toolbar>
+  

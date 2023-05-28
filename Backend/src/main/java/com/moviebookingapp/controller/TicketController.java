@@ -48,5 +48,27 @@ public class TicketController {
 		return response;
 		
 	}
+	@GetMapping("/get/tickets/{customerId}")
+	public ResponseEntity<?> getTicketOnBasisOfCustomerId(@PathVariable int customerId){
+		ResponseEntity<List<Ticket>> response = null;
+
+		List<Ticket>tickets=ticketService.getTicketBasisOnCustomerId(customerId);
+		response=new  ResponseEntity<List<Ticket>>(tickets,HttpStatus.OK);
+		logger.info("------- View All Tickets ---------");
+		return response;
+
+	}
+	@GetMapping("/get/movie/tickets/{ticketId}")
+	public ResponseEntity<?> getTicketOnBasisOfTicketId(@PathVariable int ticketId){
+		ResponseEntity<Ticket> response = null;
+
+		Ticket tickets=ticketService.getTicketBasisOfTicketId(ticketId);
+		response=new  ResponseEntity<Ticket>(tickets,HttpStatus.OK);
+		logger.info("------- View All Tickets ---------");
+		return response;
+
+	}
+
+
 
 }

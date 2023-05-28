@@ -19,5 +19,13 @@ export class ProfileComponent implements OnInit {
    this.profilePic=  `https://api.dicebear.com/6.x/notionists/svg?seed=${this.user.firstName}+${this.user.lastName}`
   
   }
+  public isAdmin(){
+    if(this.login.isLoggedIn()&&this.login.getRole()=="ADMIN") return true;
+    return false;
+  }
+  public isUser(){
+    if(this.login.isLoggedIn()&&this.login.getRole()=="USER") return true;
+    return false;
+  }
 
 }

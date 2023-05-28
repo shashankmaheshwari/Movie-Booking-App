@@ -79,6 +79,24 @@ export class MovieService {
       
       );
    }
+  //GET A TICKET BASED ON TICKET Id
+  public getTicketBasedOnTicketId(ticketId:any){
+    return this.http.get(`${baseUrl}/moviebooking/get/movie/tickets/${ticketId}`,
+    {
+      "headers": { "Authorization": `Bearer ${localStorage.getItem("token")}` }
+    }
+    
+    );
+  }
+  //GET ALL TICKETS BASED IN USERID
+  public getTicketsUserBasedOnUserId(userId:any){
+    return this.http.get(`${baseUrl}/moviebooking/get/tickets/${userId}`,
+    {
+      "headers": { "Authorization": `Bearer ${localStorage.getItem("token")}` }
+    }
+    
+    );
+  }
 
   }
 

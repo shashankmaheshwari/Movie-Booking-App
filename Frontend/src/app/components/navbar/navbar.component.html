@@ -58,10 +58,16 @@
       <button mat-menu-item *ngIf="isAdmin()" [routerLink]="'/admin/tickets'">
         View Tickets
       </button>
+      <button mat-menu-item *ngIf="isUser()" [routerLink]="'/tickets'">
+        View Tickets
+      </button>
       <button mat-menu-item *ngIf="!login.isLoggedIn()" [routerLink]="'/login'">
         Login
       </button>
-      <button mat-menu-item *ngIf="login.isLoggedIn()" [routerLink]="'admin'">
+      <button mat-menu-item *ngIf="isAdmin()" [routerLink]="'admin'">
+        Home Page
+      </button>
+      <button mat-menu-item *ngIf="isUser()" [routerLink]="'customer'">
         Home Page
       </button>
       <button mat-menu-item (click)="logout()" *ngIf="login.isLoggedIn()">

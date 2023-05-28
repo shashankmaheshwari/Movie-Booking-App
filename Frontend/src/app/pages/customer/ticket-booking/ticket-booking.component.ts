@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import compositeId from 'src/app/modals/CompositeId';
+import { Movie } from 'src/app/modals/Movie';
 
 import { SeatIn } from 'src/app/modals/SeatIn';
 
@@ -21,12 +23,18 @@ export class TicketBookingComponent implements OnInit {
   movieId:any=0;
   seatsInp:SeatIn[]=[];
   seat: { seatNumber: number }[] = [];
+  movie:Movie;
   // seat:Seat[]=[];
 
-  ticket: Ticket = new Ticket([], '', '', 0, 0);
+  ticket: Ticket = new Ticket([], '', '', 0, 0,0);
+  
 
-  constructor(private _route:ActivatedRoute,private _movie:MovieService
-    ) { }
+  constructor(private _route:ActivatedRoute,private _movie:MovieService,
+    private router:Router) { 
+      this.movie=new Movie(
+        new compositeId("", ""),0,0,""
+      );
+    }
 
   ngOnInit(): void {
     this._route.params.subscribe((params)=>{
@@ -38,7 +46,9 @@ export class TicketBookingComponent implements OnInit {
       // console.log("theatreName:",this.theatreName);
       // console.log("customerId",this.customerId);
       // console.log("movieId:",this.movieId);
+      this.getMovieBasedMovieNameTheatreName();
       this.getAllSeatsWithMovieId();
+
 
     })
 
@@ -68,12 +78,14 @@ export class TicketBookingComponent implements OnInit {
     this.ticket.movieName=this.movieName;
     this.ticket.theatreName=this.theatreName;
     this.ticket.seats=this.seat;
+    this.ticket.customerId=this.customerId;
     this.ticket.numberOfTicket=this.seat.length;
     console.log(this.ticket.seats);
     console.log('Ticket booked:', this.ticket);
     this._movie.bookTicket(this.ticket).subscribe(
-        (res)=>{
+        (res:any)=>{
           console.log(res);
+          this.router.navigate(['/get/ticket', res.ticketId]);
           this.ngOnInit();
         },
         (error)=>{
@@ -102,6 +114,18 @@ export class TicketBookingComponent implements OnInit {
         }
         console.log("Changed seat list");
         console.log(this.seatsInp);
+      },
+      (error)=>{
+        console.log(error);
+      }
+    )
+  }
+  //get a movie based on movieName and theatreName
+  public getMovieBasedMovieNameTheatreName(){
+    this._movie.getMovie(this.movieName,this.theatreName).subscribe(
+      (res:any)=>{
+        this.movie=res;
+        console.log(res);
       },
       (error)=>{
         console.log(error);

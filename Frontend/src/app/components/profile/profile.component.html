@@ -49,7 +49,8 @@
       </div>
     </mat-card-content>
     <mat-card-actions class="text-center">
-      <button  mat-raised-button color="primary" routerLink="/admin/password">UPDATE PASSWORD</button>
+      <button  *ngIf=isAdmin() mat-raised-button color="primary" routerLink="/admin/password">UPDATE PASSWORD</button>
+      <button  *ngIf=isUser() mat-raised-button color="primary" routerLink="/customer/password">UPDATE PASSWORD</button>
       <button  class="ml20"mat-raised-button color="accent" routerLink="/admin">HOME PAGE</button>
     
     </mat-card-actions>

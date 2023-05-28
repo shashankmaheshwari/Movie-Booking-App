@@ -46,13 +46,13 @@ public class CustomerController {
 
 	@PostMapping("/{userName}/forgot")
 	//@PreAuthorize("hasAuthority('USER')")
-	public ResponseEntity<String> forgotPassword(
+	public ResponseEntity<String> forgotPassword(@RequestHeader("Authorization") String token,
 			@PathVariable String userName, @RequestBody String password)
 			throws CustomerNotFoundException, CommonException {
 		ResponseEntity<String> response = null;
-		String username ="admin";
+		String username=jwtService.extractUsername(token.substring(7));
 //		jwtService.extractUsername(token.substring(7));
-		//@RequestHeader("Authorization") String token,
+//		@RequestHeader("Authorization") String token,
 		if (username.equals(userName)) {
 
 			String res = customerService.forgotPassword(userName, password);

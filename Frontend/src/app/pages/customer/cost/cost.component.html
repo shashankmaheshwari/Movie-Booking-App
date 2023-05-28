@@ -1,0 +1,37 @@
+
+<div class="container1">
+    <div class="card" >
+      <div class="header">
+        <div class="movieName">{{ticket.movieName}}</div>
+        <div class="theatreName">{{ticket.theatreName}}</div>
+      </div>
+       <div class="content">
+          <div><h3>CustomerId-{{ticket.customerId}}</h3></div>
+          <img class ="barcodeImg"src="..\..\..\assets\seats.png" alt="">
+          <div class="seatValue">
+           <!-- <div  class=" text1 "*ngFor="let s of t.seats; let last = last" >
+            {{s.seatNumber}},
+            <span *ngIf !=="last"> ,</span>
+            
+            </div>
+          </div> -->
+          <!-- <button mat-button (click)="openDialog()">No Of Tickets Booked {{t.seats.length}}</button> -->
+          No Of Tickets Booked -{{ticket.seats.length}}
+       </div>
+      <div class="footer mr20 text">
+          <div class="money">
+             INR -{{ticket.totaCost}}
+          </div>
+          <div class="extra">
+          
+           <!-- <img class ="imgCSS"src="..\..\..\assets\barcode.png" alt=""> -->
+           <button mat-raised-button (click)="homePage()" color="accent">HOME PAGE</button>
+        </div>
+        </div>
+      
+    </div>
+    
+    
+  </div>
+  
+  

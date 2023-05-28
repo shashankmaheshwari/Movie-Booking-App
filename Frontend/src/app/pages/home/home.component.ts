@@ -35,6 +35,9 @@ export class HomeComponent implements OnInit {
     if(this.login.isLoggedIn()&&this.login.getRole()=="USER") return true;
     return false;
   }
+  public getToLoginPage(){
+    this.router.navigate(['/login']);
+  }
 
   public getAllMovies(key:string=""){
     console.log(key);

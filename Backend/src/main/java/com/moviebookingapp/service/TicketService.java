@@ -12,4 +12,8 @@ public interface TicketService {
 	 public Ticket generateTicket(Ticket ticket) throws MovieNotFoundException,TicketNotFoundException, CommonException;
 	 
 	 public List<Ticket> viewTickets() throws TicketNotFoundException;
+
+	 public List<Ticket> getTicketBasisOnCustomerId(int customerId);
+
+	 public Ticket getTicketBasisOfTicketId(int ticketId);
 }

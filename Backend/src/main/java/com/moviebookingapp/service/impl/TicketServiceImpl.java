@@ -32,7 +32,7 @@ public class TicketServiceImpl implements TicketService {
 	private SeatRepository seatRepository;
 	@Autowired
 	private DBSequenceGenerator sequenceGenerator;
-    
+
 	@Override
 	public Ticket generateTicket(Ticket ticket) throws  MovieNotFoundException,TicketNotFoundException, CommonException {
 		
@@ -102,6 +102,16 @@ public class TicketServiceImpl implements TicketService {
 			return tickets;
 		}
 		
+	}
+
+	@Override
+	public List<Ticket> getTicketBasisOnCustomerId(int customerId) {
+		return ticketRepository.findByCustomerId(customerId);
+	}
+
+	@Override
+	public Ticket getTicketBasisOfTicketId(int ticketId) {
+		return ticketRepository.findByTicketId(ticketId);
 	}
 
 }

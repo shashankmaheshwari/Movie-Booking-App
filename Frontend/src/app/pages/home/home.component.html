@@ -53,12 +53,20 @@
           <button (click)="getMovie(m.compositeId.movieName,m.compositeId.theatreName,m.movieId)"class="styleButton"
             mat-raised-button
             color="primary"
-            *ngIf="m.ticketStatus == 'BOOK ASAP'"
+            *ngIf="m.ticketStatus == 'BOOK ASAP'&&(isUser()||isAdmin())"
             mat-button
           >
             {{ m.ticketStatus }}
           </button>
-          <button
+          <button (click)="getToLoginPage()"class="styleButton"
+            mat-raised-button
+            color="primary"
+            *ngIf="m.ticketStatus == 'BOOK ASAP'&&(!login.isLoggedIn())"
+            mat-button
+          >
+            {{ m.ticketStatus }}
+          </button>
+          <button class="disabled-button"
             mat-raised-button
             *ngIf="m.ticketStatus == 'SOLD OUT'"
             mat-button

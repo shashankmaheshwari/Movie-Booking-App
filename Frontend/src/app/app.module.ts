@@ -31,7 +31,8 @@ import {MatMenuModule} from '@angular/material/menu';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import { ViewTicketsComponent } from './pages/admin/view-tickets/view-tickets.component';
 import { TicketBookingComponent } from './pages/customer/ticket-booking/ticket-booking.component';
-  
+import {MatDialogModule} from '@angular/material/dialog';
+import { CostComponent } from './pages/customer/cost/cost.component';
 
 
 
@@ -50,7 +51,8 @@ import { TicketBookingComponent } from './pages/customer/ticket-booking/ticket-b
     AddMovieComponent,
     CarouselComponent,
     ViewTicketsComponent,
-    TicketBookingComponent
+    TicketBookingComponent,
+    CostComponent
     
   ],
   imports: [
@@ -69,7 +71,8 @@ import { TicketBookingComponent } from './pages/customer/ticket-booking/ticket-b
     MatListModule,
     MatGridListModule,
     MatMenuModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    MatDialogModule
     
   ],
   providers: [],

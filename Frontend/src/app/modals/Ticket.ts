@@ -7,16 +7,19 @@ export class Ticket{
     movieName:String;
     theatreName:String;
     numberOfTicket:number;
-    totalCost:number;
+    totaCost:number;
+    customerId:number;
 
     constructor(seats:Seat[],movieName:String,
         theatreName:String,
         numberOfTicket:number,
-        totalCost:number){
+        totaCost:number,
+        customerId:number){
         this.seats=seats;
         this.movieName=movieName;
         this.theatreName=theatreName;
         this.numberOfTicket=numberOfTicket;
-        this.totalCost=totalCost;
+        this.totaCost=totaCost;
+        this.customerId=customerId;
     }
 }

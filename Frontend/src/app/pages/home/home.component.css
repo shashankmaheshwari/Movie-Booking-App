@@ -52,7 +52,11 @@ margin: 0px;
 }
 
 
-
+.disabled-button {
+  pointer-events: none;
+  opacity: 0.6; /* Optional: adjust the opacity to visually indicate the disabled state */
+  /* Add any other desired styles */
+}
 input:focus{
   outline: none;
 }

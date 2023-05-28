@@ -32,7 +32,7 @@ public class Ticket {
 	  private String theatreName;
 	  
 //	  @NotNull(message="enter valid customerId")
-//	  private int customerId;
+ 	  private int customerId;
 	  
 	  @NotNull(message="Enter number Of Tickets")
 	  private int numberOfTicket;

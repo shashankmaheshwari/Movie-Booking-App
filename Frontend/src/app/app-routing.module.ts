@@ -12,6 +12,7 @@ import { PasswordComponent } from './components/password/password.component';
 import { AddMovieComponent } from './pages/admin/add-movie/add-movie.component';
 import { ViewTicketsComponent } from './pages/admin/view-tickets/view-tickets.component';
 import { TicketBookingComponent } from './pages/customer/ticket-booking/ticket-booking.component';
+import { CostComponent } from './pages/customer/cost/cost.component';
 
 const routes: Routes = [
   {
@@ -66,7 +67,23 @@ const routes: Routes = [
   {
     path:'movie/:movieName/:theatreName/:customerId/:movieId',
     component:TicketBookingComponent,
+  },
+  {
+    path:'user/profile',
+    component:ProfileComponent,
+  },
+  {
+    path:'customer/password',
+    component:PasswordComponent,
+  },
+  {
+    path:'get/ticket/:ticketId',
+    component:CostComponent,
+  },{
+    path:'tickets',
+    component:ViewTicketsComponent,
   }
+  
 ];
 
 @NgModule({
