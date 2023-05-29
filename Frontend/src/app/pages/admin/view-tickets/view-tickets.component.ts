@@ -16,6 +16,7 @@ export class ViewTicketsComponent implements OnInit {
    
   ticket:any=[];
   img:string="";
+  errorMessage:String="";
 
   seatList:Seat[]=[];
    constructor(private _movie:MovieService,public dialog: MatDialog,private login:LoginService) { 
@@ -36,6 +37,7 @@ export class ViewTicketsComponent implements OnInit {
         console.log(this.ticket);
       },
       (error)=>{
+        this.errorMessage=error.error.errorMessage;
         console.log(error);
       }
     )
@@ -56,6 +58,7 @@ export class ViewTicketsComponent implements OnInit {
         console.log(this.ticket);
       },
       (error)=>{
+        this.errorMessage=error.error.errorMessage;
         console.log(error);
       }
     );

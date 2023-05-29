@@ -13,7 +13,7 @@ public interface TicketService {
 	 
 	 public List<Ticket> viewTickets() throws TicketNotFoundException;
 
-	 public List<Ticket> getTicketBasisOnCustomerId(int customerId);
+	 public List<Ticket> getTicketBasisOnCustomerId(int customerId) throws TicketNotFoundException;
 
 	 public Ticket getTicketBasisOfTicketId(int ticketId);
 }

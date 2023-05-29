@@ -49,7 +49,7 @@ public class TicketController {
 		
 	}
 	@GetMapping("/get/tickets/{customerId}")
-	public ResponseEntity<?> getTicketOnBasisOfCustomerId(@PathVariable int customerId){
+	public ResponseEntity<?> getTicketOnBasisOfCustomerId(@PathVariable int customerId) throws TicketNotFoundException {
 		ResponseEntity<List<Ticket>> response = null;
 
 		List<Ticket>tickets=ticketService.getTicketBasisOnCustomerId(customerId);

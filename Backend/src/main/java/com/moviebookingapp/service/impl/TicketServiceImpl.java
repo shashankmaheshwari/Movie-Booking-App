@@ -39,48 +39,54 @@ public class TicketServiceImpl implements TicketService {
 		Movie movie=movieRepository.findByCompositeIdMovieNameAndCompositeIdTheatreName(ticket.getMovieName(), ticket.getTheatreName());
 		//MOVIE IS PRESENT
 		if(movie!=null) {
-			int availableTickets=movie.getTotalNoOfTickets()-movie.getNoOfTicketsSold();
-			// BOOK TICKET
-			if(availableTickets>=ticket.getNumberOfTicket()) {
-				List<Seat> listOfSeat=ticket.getSeats();
-				
-				if(listOfSeat.size()!=ticket.getNumberOfTicket()) {
-					throw new TicketNotFoundException("Add appropraite Seats");
-				} 
-				List<Seat> seats=new ArrayList<>();
-				
-				for(Seat s:listOfSeat) {
-					Seat seat=seatRepository.findBySeatNumberAndMovieId(s.getSeatNumber(), movie.getMovieId());
-				    seats.add(seat);
-				}
-				double cost=0;
-				for(Seat s:seats) {
-					// ADDED SEAT IS ALREDY BOOKED
-					if(s.getSeatStatus().equals(SeatStatus.Booked)) {
-						throw new CommonException(s.getSeatNumber()+" is already booked Select new Seat");
-					}else {
-						s.setSeatStatus(SeatStatus.Booked);
-						cost+=s.getCost();
-						//CHANGING SEAT STATUS 
-						seatRepository.save(s); 
+			int seatSize = ticket.getNumberOfTicket();
+			if (seatSize != 0) {
+				int availableTickets = movie.getTotalNoOfTickets() - movie.getNoOfTicketsSold();
+				// BOOK TICKET
+				if (availableTickets >= ticket.getNumberOfTicket()) {
+					List<Seat> listOfSeat = ticket.getSeats();
+
+					if (listOfSeat.size() != ticket.getNumberOfTicket()) {
+						throw new TicketNotFoundException("Add appropraite Seats");
 					}
+					List<Seat> seats = new ArrayList<>();
+
+					for (Seat s : listOfSeat) {
+						Seat seat = seatRepository.findBySeatNumberAndMovieId(s.getSeatNumber(), movie.getMovieId());
+						seats.add(seat);
+					}
+					double cost = 0;
+					for (Seat s : seats) {
+						// ADDED SEAT IS ALREDY BOOKED
+						if (s.getSeatStatus().equals(SeatStatus.Booked)) {
+							throw new CommonException(s.getSeatNumber() + " is already booked Select new Seat");
+						} else {
+							s.setSeatStatus(SeatStatus.Booked);
+							cost += s.getCost();
+							//CHANGING SEAT STATUS
+							seatRepository.save(s);
+						}
+					}
+					// ADDING THE COST OF TICKET
+					ticket.setTotaCost(ticket.getNumberOfTicket() * movie.getMovieCost() + cost);
+					// UPDATING SOLD TICKETS
+					movie.setNoOfTicketsSold(movie.getNoOfTicketsSold() + ticket.getNumberOfTicket());
+
+					movieRepository.save(movie);
+					ticket.setTicketId(sequenceGenerator.getSequenceNumber(Ticket.TICKET_SEQUENCE));
+					return ticketRepository.save(ticket);
+
 				}
-				// ADDING THE COST OF TICKET
-				ticket.setTotaCost(ticket.getNumberOfTicket()*movie.getMovieCost()+cost);
-				// UPDATING SOLD TICKETS
-				movie.setNoOfTicketsSold(movie.getNoOfTicketsSold()+ticket.getNumberOfTicket());
-				
-				movieRepository.save(movie);
-				ticket.setTicketId(sequenceGenerator.getSequenceNumber(Ticket.TICKET_SEQUENCE));
-				return ticketRepository.save(ticket);	
-				
+				// CAN'T BOOK
+				else {
+					//movieService.updateTicketStatus(movie.getCompositeId().getMovieName(), movie.getCompositeId().getTheatreName());
+					throw new TicketNotFoundException("Tickets Not Available");
+				}
+
+
+			} else {
+				throw new CommonException("Please select any seat to book ticket");
 			}
-			// CAN'T BOOK
-			else {
-				//movieService.updateTicketStatus(movie.getCompositeId().getMovieName(), movie.getCompositeId().getTheatreName());
-			    throw new TicketNotFoundException("Tickets Not Available");
-			}
-			
 		}
 		//MOVIE IS NOT PRESENT
 		else {
@@ -105,8 +111,16 @@ public class TicketServiceImpl implements TicketService {
 	}
 
 	@Override
-	public List<Ticket> getTicketBasisOnCustomerId(int customerId) {
-		return ticketRepository.findByCustomerId(customerId);
+	public List<Ticket> getTicketBasisOnCustomerId(int customerId) throws TicketNotFoundException {
+		List<Ticket> tickets=ticketRepository.findByCustomerId(customerId);
+
+		if(tickets.size()==0) {
+			throw new TicketNotFoundException("Tickets Not Available");
+		}else {
+			return tickets;
+		}
+
+
 	}
 
 	@Override

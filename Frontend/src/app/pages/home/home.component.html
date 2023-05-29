@@ -33,6 +33,12 @@
         <div class="movieHeader">
           <div class="movieTitle">
             {{ m.compositeId.movieName }}
+            <button  *ngIf="isAdmin()" mat-icon-button [matMenuTriggerFor]="menu"><mat-icon>more_vert</mat-icon></button>
+
+                    <mat-menu #menu="matMenu" xPosition="before">
+                        <button mat-menu-item (click)="updateTicketStatus(m.compositeId.movieName ,m.compositeId.theatreName )" >Update Ticket Status</button>
+
+             </mat-menu>
           </div>
           <div class="movieSubTitle">
             {{ m.compositeId.theatreName }}

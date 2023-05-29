@@ -98,5 +98,16 @@ export class MovieService {
     );
   }
 
+  // update Ticket Status
+  public updateTicketStatus(movieName:String,theatreName:String){
+    return this.http.put(`${baseUrl}/moviebooking/${movieName}/${theatreName}/update/ticket`, null,
+    {
+      "headers": { "Authorization": `Bearer ${localStorage.getItem("token")}` },
+      "responseType":"text"
+    }
+    
+    );
+  }
+
   }
 

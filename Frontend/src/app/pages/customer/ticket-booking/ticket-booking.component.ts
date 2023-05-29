@@ -10,6 +10,7 @@ import { Ticket } from 'src/app/modals/Ticket';
 
 
 import { MovieService } from 'src/app/services/movie.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-ticket-booking',
@@ -24,6 +25,7 @@ export class TicketBookingComponent implements OnInit {
   seatsInp:SeatIn[]=[];
   seat: { seatNumber: number }[] = [];
   movie:Movie;
+  
   // seat:Seat[]=[];
 
   ticket: Ticket = new Ticket([], '', '', 0, 0,0);
@@ -89,6 +91,10 @@ export class TicketBookingComponent implements OnInit {
           this.ngOnInit();
         },
         (error)=>{
+          Swal.fire({
+            icon: 'warning',
+            title: 'No Tickets Selected',
+          })
           console.log(error);
         }
 

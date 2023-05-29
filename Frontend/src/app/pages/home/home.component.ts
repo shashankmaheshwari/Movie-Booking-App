@@ -49,7 +49,7 @@ export class HomeComponent implements OnInit {
         
       },
       (error)=>{
-     
+        this._snak.open(error.error, 'Dismiss');
         console.log(error);
       }
     )
@@ -104,6 +104,18 @@ export class HomeComponent implements OnInit {
           }
 
       )
+  }
+
+  public updateTicketStatus(movieName:String,theatreName:String){
+    this._movie.updateTicketStatus(movieName,theatreName).subscribe(
+      (res)=>{
+        console.log(res);
+        this._snak.open(res, 'close');
+      },
+      (error)=>{
+          console.log(error);
+      }
+    )
   }
 
 
