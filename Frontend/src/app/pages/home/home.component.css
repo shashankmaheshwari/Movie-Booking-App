@@ -9,7 +9,7 @@
 
 }
 .banner{
-  height: 200px;
+  height: 400px;
   width: 100%;
   
   /* margin-top: 65px; */
@@ -44,7 +44,7 @@
 }
 #search{
 width: 90%;
-height: 80%;
+height: 70%;
 border:none;
 margin: 0px;
 
@@ -61,12 +61,13 @@ input:focus{
   outline: none;
 }
 .movieCard{
-  height:700px;
-  width: 400px;
+  height:450px;
+  width: 300px;
   /* background-color: red; */
   background:  linear-gradient(115.29deg, #B6116B 15.07%, #3B1578 104.4%);
   padding:16px;
-  margin: 16px;
+  margin: 16px 8px;
+ 
   border: 1px solid black;
   color:white;
   border-radius: 30px;
@@ -84,12 +85,15 @@ input:focus{
   font-size: 22px;
   line-height: 25px;
   font-weight: bold;
+  display: flex;
+  justify-content: space-between;
   /* background-color:blue; */
 }
 .movieSubTitle{
   font-size: 14px;
   /* background-color: yellow; */
   margin-top: 8px;
+  
 }
 .movieBanner{
   height: 62%;

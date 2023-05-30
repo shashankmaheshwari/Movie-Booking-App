@@ -5,6 +5,7 @@ import { Seat } from 'src/app/modals/Seat';
 import { Ticket } from 'src/app/modals/Ticket';
 import { LoginService } from 'src/app/services/login.service';
 import { MovieService } from 'src/app/services/movie.service';
+import { SeatDialogComponent } from '../../seat-dialog/seat-dialog.component';
 
 
 @Component({
@@ -63,6 +64,17 @@ export class ViewTicketsComponent implements OnInit {
       }
     );
   }
- 
+  openDialog(seat1:any): void {
+    const dialogRef = this.dialog.open(SeatDialogComponent, {
+      width: '400px',
+      data: { seats: seat1 } // Pass the seat data to the dialog component
+    });
+  
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+      // Perform any necessary actions after the dialog is closed
+    });
+  }
+  
   
 }

@@ -34,10 +34,10 @@
           <div class="movieTitle">
             {{ m.compositeId.movieName }}
             <button  *ngIf="isAdmin()" mat-icon-button [matMenuTriggerFor]="menu"><mat-icon>more_vert</mat-icon></button>
-
                     <mat-menu #menu="matMenu" xPosition="before">
                         <button mat-menu-item (click)="updateTicketStatus(m.compositeId.movieName ,m.compositeId.theatreName )" >Update Ticket Status</button>
-
+                        <button  mat-menu-item  >Total No. of Tickets - <b>{{m.totalNoOfTickets}}</b></button>
+                        <button  mat-menu-item >Tickets Sold - <b>{{ m.noOfTicketsSold}}</b></button>
              </mat-menu>
           </div>
           <div class="movieSubTitle">
@@ -50,11 +50,7 @@
           <img src="{{ m.movieImage }}" />
         </div>
         <br>
-        <div  *ngIf="isAdmin()" class="movieTicket">
-          <h3 class="mr20">Total No. of Tickets - {{m.totalNoOfTickets}}</h3>
-          <h3 class="mr20">Tickets Sold - {{ m.noOfTicketsSold}}</h3>
-          
-        </div>
+        
         <div class="movieFooter">
           <button (click)="getMovie(m.compositeId.movieName,m.compositeId.theatreName,m.movieId)"class="styleButton"
             mat-raised-button

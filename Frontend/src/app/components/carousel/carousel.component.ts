@@ -12,10 +12,14 @@ import { MovieService } from 'src/app/services/movie.service';
 export class CarouselComponent implements OnInit {
 
   images: string[] = [
-    'https://assets-in.bmscdn.com/iedb/movies/images/mobile/listing/xxlarge/ib71-et00312966-1683884508.jpg',
     'https://assets-in.bmscdn.com/iedb/movies/images/mobile/listing/xxlarge/guardians-of-the-galaxy-vol-3-et00310794-1683529214.jpg',
+    'https://assets-in.bmscdn.com/iedb/movies/images/mobile/listing/xxlarge/jogira-sara-ra-ra-et00307432-1682665479.jpg',
+    'https://assets-in.bmscdn.com/iedb/movies/images/mobile/listing/xxlarge/aazam-et00343041-1684216770.jpg',
     'https://assets-in.bmscdn.com/iedb/movies/images/mobile/listing/xxlarge/2018-et00357072-1681718285.jpg',
-     
+     'https://assets-in.bmscdn.com/iedb/movies/images/mobile/listing/xxlarge/spider-man-across-the-spider-verse-et00347275-1684425314.jpg',
+     'https://assets-in.bmscdn.com/iedb/movies/images/extra/horizontal_no_logo/mobile/listing/xxlarge/the-heist-of-the-century-et00300013-05-08-2021-10-08-20.jpg',
+     'https://assetscdn1.paytm.com/images/cinema/spiderman__app-d2deebf0-fb9f-11ed-a58c-1b525140019f.jpg',
+     'https://assetscdn1.paytm.com/images/cinema/Guardians-of-the-Galaxy-Vol.-3-(IMAX)-app-f943ca00-e505-11ed-8b83-8735af6d695b.jpg'
   ];
   currentImage: string = this.images[0];
   activeIndex: number = 0;

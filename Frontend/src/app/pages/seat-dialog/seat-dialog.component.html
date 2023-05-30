@@ -1,0 +1,24 @@
+  <!-- <div  class=" text1 " *ngFor="let s of seats; let last = last" >
+          {{s.seatNumber}},
+          <span *ngIf !=="last"> ,</span>
+          
+    </div>
+    <!-- <h2 mat-dialog-title>Seats</h2> -->
+    <!-- <div mat-dialog-content>
+      <div *ngFor="let seat of seats">
+        Seat Number: {{ seat.seatNumber }}
+      </div>
+    </div>
+    <div mat-dialog-actions> -->
+      <!-- <button mat-button (click)="onClose()">Close</button> -->
+    <!-- </div> --> 
+    <h2 mat-dialog-title>Seats</h2>
+<div mat-dialog-content>
+    
+  <div *ngFor="let seat of data.seats">
+    Seat Number: {{ seat.seatNumber }}
+  </div>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onClose()">Close</button>
+</div>

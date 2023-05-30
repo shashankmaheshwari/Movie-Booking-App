@@ -33,6 +33,7 @@ import { ViewTicketsComponent } from './pages/admin/view-tickets/view-tickets.co
 import { TicketBookingComponent } from './pages/customer/ticket-booking/ticket-booking.component';
 import {MatDialogModule} from '@angular/material/dialog';
 import { CostComponent } from './pages/customer/cost/cost.component';
+import { SeatDialogComponent } from './pages/seat-dialog/seat-dialog.component';
 
 
 
@@ -52,7 +53,8 @@ import { CostComponent } from './pages/customer/cost/cost.component';
     CarouselComponent,
     ViewTicketsComponent,
     TicketBookingComponent,
-    CostComponent
+    CostComponent,
+    SeatDialogComponent
     
   ],
   imports: [

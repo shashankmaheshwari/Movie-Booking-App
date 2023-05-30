@@ -23,7 +23,9 @@ export class CostComponent implements OnInit {
     this.getTicketBasisOnTicketId();
   
   }
-
+  printPage(){
+    window.print();
+  }
   public getTicketBasisOnTicketId(){
     this._movie.getTicketBasedOnTicketId(this.ticketId).subscribe(
 

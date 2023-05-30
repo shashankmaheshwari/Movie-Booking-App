@@ -68,7 +68,7 @@ export class HomeComponent implements OnInit {
         console.log(movieId,movieName);
         this._movie.deleteMovie(movieId,movieName).subscribe(
           (data) => {
-            this._snak.open('Movie deleted ', '', {
+            this._snak.open('Movie deleted ', 'close', {
               duration: 3000,
             });
             this.ngOnInit();
