@@ -27,7 +27,7 @@ public class TicketController {
 	private TicketServiceImpl ticketService;
   
 	@PostMapping("/add")
-	@PreAuthorize("hasAuthority('USER')")
+//	@PreAuthorize("hasAuthority('USER')")
 	public ResponseEntity<Ticket> addTicket(@RequestBody Ticket ticket) throws MovieNotFoundException, TicketNotFoundException, CommonException{
 		ResponseEntity<Ticket> response = null;
  

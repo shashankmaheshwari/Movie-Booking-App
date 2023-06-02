@@ -74,6 +74,9 @@ export class SignupComponent implements OnInit {
       horizontalPosition: 'right'
     });
   }
+  public alreadyLogged(){
+    this.router.navigate(['/login']);
+  }
 
   
   

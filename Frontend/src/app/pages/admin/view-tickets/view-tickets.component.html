@@ -1,38 +1,24 @@
-
 <div class="container1">
-  <p>{{errorMessage}}</p>
-  <div class="card"  *ngFor="let t of ticket">
+  <p>{{ errorMessage }}</p>
+  <div class="card" *ngFor="let t of ticket">
     <div class="header">
-      <div class="movieName">{{t.movieName}}</div>
-      <div class="theatreName">{{t.theatreName}}</div>
+      <div class="movieName">{{ t.movieName }}</div>
+      <div class="theatreName">{{ t.theatreName }}</div>
     </div>
-     <div class="content">
-        <div><h3>CustomerId-{{t.customerId}}</h3></div>
-        <img class ="barcodeImg"src="..\..\..\assets\seats.png" alt="">
-        <div class="seatValue">
-         <!-- <div  class=" text1 "*ngFor="let s of t.seats; let last = last" >
-          {{s.seatNumber}},
-          <span *ngIf !=="last"> ,</span>
-          
-          </div>
-        </div> -->
-        <button mat-raised-button (click)="openDialog(t.seats)"> No Of Tickets Booked -{{t.seats.length}}</button>
-        <!-- <button mat-button (click)="openDialog()">No Of Tickets Booked {{t.seats.length}}</button> -->
-       
-     </div>
-    <div class="footer mr20 text">
-        <div class="money">
-           INR -{{t.totaCost}}
-        </div>
-        <div class="extra">
-        
-         <!-- <img class ="imgCSS"src="..\..\..\assets\barcode.png" alt=""> -->
-         <!-- <button mat-raised-button (click)="homePage()" color="accent">HOME PAGE</button> -->
+    <div class="content">
+      <div>
+        <h3>CustomerId-{{ t.customerId }}</h3>
       </div>
+      <img class="barcodeImg" src="..\..\..\assets\seats.png" alt="" />
+      <div class="seatValue">
+        <button mat-raised-button (click)="openDialog(t.seats)">
+          No Of Tickets Booked -{{ t.seats.length }}
+        </button>
       </div>
-    
+      <div class="footer mr20 text">
+        <div class="money">INR -{{ t.totaCost }}</div>
+        <div class="extra"></div>
+      </div>
+    </div>
   </div>
-  
-  
 </div>
-

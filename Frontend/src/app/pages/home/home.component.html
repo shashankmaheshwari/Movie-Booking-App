@@ -3,72 +3,95 @@
 </div>
 
 <div class="bootstrap-wrapper parent">
- 
   <div class="container1">
     <div class="row" style="margin-top: 20px">
       <div class="col-md-6 offset-md-3 inputContainer">
-       
-        
-          <input 
-            matInput
-            type="text"
-            name="search"
-            id="search"
-            #searchKey
-            (keyup)="searchMovies(searchKey.value)"
-            placeholder="Search for Movies"
-          />
-          <span class="searchIcon ">
-            
-            <mat-icon>search</mat-icon>
-
-            </span>
-        
-      
+        <input
+          matInput
+          type="text"
+          name="search"
+          id="search"
+          #searchKey
+          (keyup)="searchMovies(searchKey.value)"
+          placeholder="Search for Movies"
+        />
+        <span class="searchIcon">
+          <mat-icon>search</mat-icon>
+        </span>
       </div>
     </div>
     <!-- Movie list -->
     <div class="movieView">
-      <div class="movieCard"   *ngFor="let m of movieList">
+      <div class="movieCard" *ngFor="let m of movieList">
         <div class="movieHeader">
           <div class="movieTitle">
             {{ m.compositeId.movieName }}
-            <button  *ngIf="isAdmin()" mat-icon-button [matMenuTriggerFor]="menu"><mat-icon>more_vert</mat-icon></button>
-                    <mat-menu #menu="matMenu" xPosition="before">
-                        <button mat-menu-item (click)="updateTicketStatus(m.compositeId.movieName ,m.compositeId.theatreName )" >Update Ticket Status</button>
-                        <button  mat-menu-item  >Total No. of Tickets - <b>{{m.totalNoOfTickets}}</b></button>
-                        <button  mat-menu-item >Tickets Sold - <b>{{ m.noOfTicketsSold}}</b></button>
-             </mat-menu>
+            <button
+              *ngIf="isAdmin()"
+              mat-icon-button
+              [matMenuTriggerFor]="menu"
+            >
+              <mat-icon>more_vert</mat-icon>
+            </button>
+            <mat-menu #menu="matMenu" xPosition="before">
+              <button
+                mat-menu-item
+                (click)="
+                  updateTicketStatus(
+                    m.compositeId.movieName,
+                    m.compositeId.theatreName
+                  )
+                "
+              >
+                Update Ticket Status
+              </button>
+              <button mat-menu-item>
+                Total No. of Tickets - <b>{{ m.totalNoOfTickets }}</b>
+              </button>
+              <button mat-menu-item>
+                Tickets Sold - <b>{{ m.noOfTicketsSold }}</b>
+              </button>
+            </mat-menu>
           </div>
           <div class="movieSubTitle">
             {{ m.compositeId.theatreName }}
           </div>
-          
         </div>
-        
+
         <div class="movieBanner">
           <img src="{{ m.movieImage }}" />
         </div>
-        <br>
-        
+        <br />
+
         <div class="movieFooter">
-          <button (click)="getMovie(m.compositeId.movieName,m.compositeId.theatreName,m.movieId)"class="styleButton"
+          <button
+            (click)="
+              getMovie(
+                m.compositeId.movieName,
+                m.compositeId.theatreName,
+                m.movieId
+              )
+            "
+            class="styleButton"
             mat-raised-button
             color="primary"
-            *ngIf="m.ticketStatus == 'BOOK ASAP'&&(isUser()||isAdmin())"
+            *ngIf="m.ticketStatus == 'BOOK ASAP' && (isUser() || isAdmin())"
             mat-button
           >
             {{ m.ticketStatus }}
           </button>
-          <button (click)="getToLoginPage()"class="styleButton"
+          <button
+            (click)="getToLoginPage()"
+            class="styleButton"
             mat-raised-button
             color="primary"
-            *ngIf="m.ticketStatus == 'BOOK ASAP'&&(!login.isLoggedIn())"
+            *ngIf="m.ticketStatus == 'BOOK ASAP' && !login.isLoggedIn()"
             mat-button
           >
             {{ m.ticketStatus }}
           </button>
-          <button class="disabled-button"
+          <button
+            class="disabled-button"
             mat-raised-button
             *ngIf="m.ticketStatus == 'SOLD OUT'"
             mat-button
@@ -76,30 +99,18 @@
           >
             {{ m.ticketStatus }}
           </button>
-          <button  *ngIf="isAdmin()" styleButton
-          mat-raised-button
+          <button
+            *ngIf="isAdmin()"
+            styleButton
+            mat-raised-button
             (click)="deleteMovie(m.compositeId.movieName, m.movieId)"
             aria-label="Example icon button with a delete icon"
             color="warn"
-
           >
             <mat-icon>delete</mat-icon>
           </button>
         </div>
       </div>
     </div>
-    <!-- <mat-paginator #paginator
-               class="demo-paginator"
-               (page)="handlePageEvent($event)"
-               [length]="length"
-               [pageSize]="pageSize"
-               [disabled]="disabled"
-               [showFirstLastButtons]="showFirstLastButtons"
-               [pageSizeOptions]="showPageSizeOptions ? pageSizeOptions : []"
-               [hidePageSize]="hidePageSize"
-               [pageIndex]="pageIndex"
-               aria-label="Select page">
-              
-</mat-paginator> -->
   </div>
 </div>

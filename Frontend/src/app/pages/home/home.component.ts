@@ -49,7 +49,9 @@ export class HomeComponent implements OnInit {
         
       },
       (error)=>{
-        this._snak.open(error.error, 'Dismiss');
+        this._snak.open(error.error, 'Dismiss',{
+          duration: 3000,
+        });
         console.log(error);
       }
     )
@@ -111,6 +113,7 @@ export class HomeComponent implements OnInit {
       (res)=>{
         console.log(res);
         this._snak.open(res, 'close');
+        this.ngOnInit();
       },
       (error)=>{
           console.log(error);

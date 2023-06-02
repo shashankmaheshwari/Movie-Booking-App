@@ -1,38 +1,39 @@
 <div class="banner">
-    
-    <div class="movieImg">
-        <img class="imgCSS" src="{{movie.movieImage}}" alt="">
-        <button class="buttonCSS" (click)="bookTicket()" mat-raised-button color="accent">BOOK </button>
-        
+  <div class="movieImg">
+    <img class="imgCSS" src="{{ movie.movieImage }}" alt="" />
+    <button
+      class="buttonCSS"
+      (click)="bookTicket()"
+      mat-raised-button
+      color="accent"
+    >
+      BOOK
+    </button>
+  </div>
+  <div class="movieDetails">
+    <div class="movieName">
+      <h1>{{ movieName }}</h1>
     </div>
-    <div class="movieDetails">
-        <div class="movieName">
-            <h1>{{movieName}}</h1>
-        </div>
-        <div class="theatreName">
-            <h1>{{theatreName}}</h1>
-        </div>
-        <div class="cost">
-            <h1>Rs-{{movie.movieCost}}</h1>
-        </div>
+    <div class="theatreName">
+      <h1>{{ theatreName }}</h1>
+    </div>
+    <div class="cost">
+      <h1>Rs-{{ movie.movieCost }}</h1>
     </div>
   </div>
-
-
-
-
+</div>
 
 <div class="seat-map">
   <div class="seat-row" *ngFor="let seat of seatsInp">
-    <div class="seat" [class.selected]="seat.isSelected" [class.unavailable]="seat.seatStatus === 'Booked'" (click)="toggleSeatSelection(seat)">
-       <i class="fas fa-chair seat-icon"></i>
+    <div
+      class="seat"
+      [class.selected]="seat.isSelected"
+      [class.unavailable]="seat.seatStatus === 'Booked'"
+      (click)="toggleSeatSelection(seat)"
+    >
+      <i class="fas fa-chair seat-icon"></i>
       <div class="seat-number">{{ seat.seatNumber }}</div>
       <div class="seat-type">{{ seat.seatType }}</div>
     </div>
   </div>
-  
-  
 </div>
-
-
-

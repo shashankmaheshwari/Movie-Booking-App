@@ -1,59 +1,95 @@
 <div class="bootstrap-wrapper">
-    <div class="container">
-      <div class="row" style="margin-top: 20px">
-        <div class="col-md-6 offset-md-3">
-          <mat-card>
+  <div class="container">
+    <div class="row" style="margin-top: 20px">
+      <div class="col-md-6 offset-md-3">
+        <mat-card>
           <div class="container text-center">
-            <img src="../../../assets/movieIcon.png" height="80px" alt="Movie Icon" />
+            <img
+              src="../../../assets/movieIcon.png"
+              height="80px"
+              alt="Movie Icon"
+            />
           </div>
           <h1 class="text-center">ADD MOVIE!!</h1>
-          
+
           <form (ngSubmit)="formSubmit()">
             <!------------- Movie Name---->
             <mat-form-field class="full-width" appearance="outline">
               <mat-label>Movie Name</mat-label>
-              <input  required [(ngModel)]="movie.compositeId.movieName" name="movieName" matInput placeholder="Enter here" />
+              <input
+                required
+                [(ngModel)]="movie.compositeId.movieName"
+                name="movieName"
+                matInput
+                placeholder="Enter here"
+              />
             </mat-form-field>
-  
-             <!-- ----------theatre Name ---------->
-             <mat-form-field class="full-width" appearance="outline">
+
+            <!-- ----------theatre Name ---------->
+            <mat-form-field class="full-width" appearance="outline">
               <mat-label>Theatre Name</mat-label>
-              <input  [(ngModel)]="movie.compositeId.theatreName" required name="theatreName"
-              matInput placeholder="Enter here">
+              <input
+                [(ngModel)]="movie.compositeId.theatreName"
+                required
+                name="theatreName"
+                matInput
+                placeholder="Enter here"
+              />
             </mat-form-field>
-  
+
             <!-------------- toal no of Tickets ------------>
             <mat-form-field class="full-width" appearance="outline">
               <mat-label>Total Tickets</mat-label>
-              <input [(ngModel)]="movie.totalNoOfTickets" type="number"  required name="totalTickets"  
-              matInput placeholder="Enter here">
+              <input
+                [(ngModel)]="movie.totalNoOfTickets"
+                type="number"
+                required
+                name="totalTickets"
+                matInput
+                placeholder="Enter here"
+              />
             </mat-form-field>
             <!-- ------------ Movie URL ---------- -->
-             <mat-form-field class="full-width" appearance="outline">
-                <mat-label>Movie URL</mat-label>
-                <input  [(ngModel)]="movie.movieImage" required name="movieURL"  
-                matInput placeholder="Enter here">
-              </mat-form-field>
-    
-  
+            <mat-form-field class="full-width" appearance="outline">
+              <mat-label>Movie URL</mat-label>
+              <input
+                [(ngModel)]="movie.movieImage"
+                required
+                name="movieURL"
+                matInput
+                placeholder="Enter here"
+              />
+            </mat-form-field>
+
             <!---------------- movieCost---------------->
             <mat-form-field class="full-width" appearance="outline">
               <mat-label>Movie Cost</mat-label>
-              <input  [(ngModel)]="movie.movieCost" required name="movieCost"  
-              type="number" matInput placeholder="Enter here">
-              
+              <input
+                [(ngModel)]="movie.movieCost"
+                required
+                name="movieCost"
+                type="number"
+                matInput
+                placeholder="Enter here"
+              />
             </mat-form-field>
 
             <div class="container text-center">
-              <button type="submit" mat-raised-button color="primary">ADD MOVIE</button>
-              <button  type="reset" style="margin-left: 20px;" mat-raised-button color="accent">clear</button>
-             
+              <button type="submit" mat-raised-button color="primary">
+                ADD MOVIE
+              </button>
+              <button
+                type="reset"
+                style="margin-left: 20px"
+                mat-raised-button
+                color="accent"
+              >
+                clear
+              </button>
             </div>
-  
           </form>
-      </mat-card>
-        </div>
+        </mat-card>
       </div>
     </div>
   </div>
-  
+</div>

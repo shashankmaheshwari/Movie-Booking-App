@@ -12,13 +12,6 @@
   </div>
 
   <div class="navbarButtons">
-    <!-- <button mat-icon-button *ngIf="login.getCustomer().role!='ADMIN'" [matMenuTriggerFor]="belowMenu">
-    <mat-icon class="rounded">person</mat-icon></button>
-  <mat-menu #belowMenu="matMenu" yPosition="below">
-    <button mat-menu-item routerLink="/profile">Profile</button>
-    <button mat-menu-item *ngIf="login.getCustomer().role=='ADMIN'"   routerLink="/addMovie">Add a Movie</button>
-    <button mat-menu-item (click)="logout()">Logout</button>
-  </mat-menu> -->
     <button
       mat-icon-button
       [matMenuTriggerFor]="menu"
@@ -73,9 +66,6 @@
       <button mat-menu-item (click)="logout()" *ngIf="login.isLoggedIn()">
         Logout
       </button>
-      <!-- <button mat-menu-item>
-        <span></span>
-      </button> -->
     </mat-menu>
   </div>
 </mat-toolbar>
