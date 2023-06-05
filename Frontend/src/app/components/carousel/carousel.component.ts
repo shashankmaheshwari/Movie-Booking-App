@@ -14,7 +14,6 @@ export class CarouselComponent implements OnInit {
   images: string[] = [
     'https://assets-in.bmscdn.com/iedb/movies/images/mobile/listing/xxlarge/guardians-of-the-galaxy-vol-3-et00310794-1683529214.jpg',
     'https://assets-in.bmscdn.com/iedb/movies/images/mobile/listing/xxlarge/jogira-sara-ra-ra-et00307432-1682665479.jpg',
-    'https://assets-in.bmscdn.com/iedb/movies/images/mobile/listing/xxlarge/aazam-et00343041-1684216770.jpg',
     'https://assets-in.bmscdn.com/iedb/movies/images/mobile/listing/xxlarge/2018-et00357072-1681718285.jpg',
      'https://assets-in.bmscdn.com/iedb/movies/images/mobile/listing/xxlarge/spider-man-across-the-spider-verse-et00347275-1684425314.jpg',
      'https://assets-in.bmscdn.com/iedb/movies/images/extra/horizontal_no_logo/mobile/listing/xxlarge/the-heist-of-the-century-et00300013-05-08-2021-10-08-20.jpg',

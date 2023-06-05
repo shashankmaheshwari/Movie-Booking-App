@@ -1,6 +1,10 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { CostComponent } from './cost.component';
+import { LoginService } from 'src/app/services/login.service';
+import { MovieService } from 'src/app/services/movie.service';
+import { RouterTestingModule } from '@angular/router/testing';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe('CostComponent', () => {
   let component: CostComponent;
@@ -8,7 +12,10 @@ describe('CostComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ CostComponent ]
+      imports:[HttpClientTestingModule,
+        RouterTestingModule],
+      declarations: [ CostComponent ],
+      providers:[ MovieService,LoginService ]
     })
     .compileComponents();
   });

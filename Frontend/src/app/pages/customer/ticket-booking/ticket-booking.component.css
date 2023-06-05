@@ -11,17 +11,18 @@
 }
 
 .movieImg {
-  width: 400px;
-  height: 400px;
+  width: 500px;
+  height: 500px;
   /* background-color: blue; */
   padding: 50px;
   display: flex;
   align-items: center;
 }
 .imgCSS {
-  width: 55%;
+  width: 67%;
   height: 100%;
   margin: 45px;
+  margin-left: 15px;
 }
 .buttonCSS {
   width: 140px;
@@ -40,18 +41,30 @@
   padding: 5%;
 }
 .movieName {
-  width: 30%;
+  width: 60%;
   height: 50%;
+  display: flex;
+  flex-direction: row;
+  padding-right: 50px;
   /* background-color: pink; */
 }
 .theatreName {
   width: 30%;
   height: 30%;
+  display: flex;
+  flex-direction: row;
   /* background-color: aqua; */
+}
+.seat-info{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }
 .cost {
   width: 30%;
   height: 20%;
+  display: flex;
+  flex-direction: row;
   /* background-color: greenyellow; */
 }
 .seat-map {
@@ -80,6 +93,15 @@
   align-items: center;
   justify-content: center;
   cursor: pointer;
+}
+.seatAvailable{
+  background-color: #1abc9c;
+}
+.seatBooked{
+  background-color: #e74c3c;
+}
+.seatSelected{
+  background-color: #2ecc71;
 }
 
 .seat.unavailable {

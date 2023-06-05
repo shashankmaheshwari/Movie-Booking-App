@@ -112,8 +112,9 @@ export class HomeComponent implements OnInit {
     this._movie.updateTicketStatus(movieName,theatreName).subscribe(
       (res)=>{
         console.log(res);
+        this.getAllMovies();
         this._snak.open(res, 'close');
-        this.ngOnInit();
+        
       },
       (error)=>{
           console.log(error);

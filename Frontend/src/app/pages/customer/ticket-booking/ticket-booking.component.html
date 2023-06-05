@@ -12,13 +12,24 @@
   </div>
   <div class="movieDetails">
     <div class="movieName">
-      <h1>{{ movieName }}</h1>
+      <!-- <h1>Movie </h1> -->
+      <h2>{{ movieName }}</h2>
     </div>
     <div class="theatreName">
-      <h1>{{ theatreName }}</h1>
+      <!-- <h1>Theatre  </h1> -->
+      <h2>{{ theatreName }}</h2>
     </div>
     <div class="cost">
-      <h1>Rs-{{ movie.movieCost }}</h1>
+      <!-- <h1>cost</h1> -->
+      <h2>Rs-{{ movie.movieCost }}</h2>
+     
+    </div>
+    <h2>Seat  Status -</h2>
+    <div class="seat-info">
+     
+      <div class=" seat seat-number seatAvailable">Available </div>
+      <div class=" seat seat-type seatBooked">Booked</div>
+      <div class=" seat seat-type seatSelected">Selected</div>
     </div>
   </div>
 </div>
